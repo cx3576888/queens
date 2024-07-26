@@ -16,3 +16,9 @@ Install packages:
 ```bash
 $ yarn
 ```
+
+Use Vitest:
+```bash
+$ yarn add -D vitest
+```
+And then add `"test": "vitest"` into `"scripts"` section in `package.json`

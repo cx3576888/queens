@@ -11,3 +11,8 @@ $ yarn create vite queens --template react-ts
 $ cd queens/
 $ git init
 ```
+
+Install packages:
+```bash
+$ yarn
+```

@@ -1,7 +1,5 @@
-import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import App from "../src/App";
-import { expect, test } from "vitest";
 
 test('simple math test', () => {
   expect(2 + 2).toBe(4);
@@ -9,6 +7,6 @@ test('simple math test', () => {
 
 test('renders App component with heading', () => {
   render(<App />);
-  const element = screen.getByText(/Vite + React/i);
+  const element = screen.getByText('Vite + React');
   expect(element).toBeInTheDocument();
 });

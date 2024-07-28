@@ -24,7 +24,8 @@ $ yarn
   ```
 
 - Create a `test` folder, all test files will be here\
-  File name example: `App.tsx` <--> `App.test.tsx`
+  Files should satisfy format `"test/**/*.test.tsx"`\
+  Example: `App.tsx` <--> `App.test.tsx`
 
 - Update `package.json`:\
   Add `"test": "vitest"` into `"scripts"` section
@@ -41,8 +42,10 @@ $ yarn
 
 - Create `setupTests.ts` file
 
-- Set `environment`, `globals`, `setupFiles` properly inside `vite.config.ts`
+- Create `vitest-env.d.ts` file
 
-- Set `includes`, `types` properly inside `tsconfig.app.json`
+- Set `environment`, `globals`, `setupFiles`, `include` properly inside `vite.config.ts`
+
+- Set `include` properly inside `tsconfig.app.json`
 
 - Ready to write unit tests!

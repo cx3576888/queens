@@ -16,7 +16,6 @@
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["vitest/globals", "@testing-library/jest-dom"],
 
     /* Linting */
     "strict": true,
@@ -24,5 +23,9 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "test"]
+  "include": [
+    "src",
+    "test/**/*.test.tsx",
+    "test/vitest-env.d.ts"
+  ]
 }

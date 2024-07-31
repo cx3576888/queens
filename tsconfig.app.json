@@ -3,6 +3,7 @@
     // Modules
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
     // Emit
     "noEmit": true,
     // Interop Constraints

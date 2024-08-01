@@ -62,7 +62,8 @@ $ yarn install
 |   |-- global.css
 |   |-- main.tsx
 |   |-- styles
-|   |   `-- App.css
+|   |   |-- App.css
+|   |   `-- reset.css
 |   `-- vite-env.d.ts
 |-- test
 |   |-- components
@@ -75,7 +76,7 @@ $ yarn install
 |-- vite.config.ts
 `-- yarn.lock
 
-6 directories, 19 files
+6 directories, 20 files
 ```
 
 ## Provided `scripts`:

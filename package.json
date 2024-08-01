@@ -8,7 +8,13 @@
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "test": "vitest",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "tree": "tree -a -I \"node_modules|.git\"",
+    "tree-path": "tree -afi -I \"node_modules|.git\"",
+    "tree-folders": "tree -afid -I \"node_modules|.git\"",
+    "my-ls": "ls -aR --ignore={node_modules,.git} | grep -v '\\./\\?$'",
+    "my-tree-path": "find . -path ./node_modules -prune -o -path ./.git -prune -o -print",
+    "my-tree-folders": "find . -path ./node_modules -prune -o -path ./.git -prune -o -type d -print"
   },
   "dependencies": {
     "react": "^18.3.1",

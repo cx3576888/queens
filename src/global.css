@@ -1,6 +1,20 @@
 :root {
   color-scheme: light dark;
   font-family: Helvetica, Arial, system-ui, sans-serif;
+  font-size: 16px;
+}
+
+body {
+  line-height: 1.5;
+}
+
+ul {
+  list-style-type: disc;
+  list-style-position: outside;
+}
+
+ul > li {
+  margin-left: 1em;
 }
 
 @media (prefers-color-scheme: light) {

@@ -20,7 +20,7 @@ $ yarn install
   ```
 
 - Create a `test` folder for all test files
-  - Each unit test file should have the same name as its source file, be placed in the same relative path under `test`, and with `.test.tsx` as a suffix
+  - Each unit test file should have the same name as its source file, be placed in the same relative path under `test`, and with `.test.ts` or `.test.tsx` as a suffix
   - Example: `src/components/App.tsx` <--> `test/components/App.test.tsx`
 
 - Update `package.json`:\
@@ -58,17 +58,24 @@ $ yarn install
 |   `-- favicon.svg
 |-- src
 |   |-- components
-|   |   `-- App.tsx
+|   |   |-- App.tsx
+|   |   |-- GameRule.tsx
+|   |   `-- Timer.tsx
 |   |-- global.css
 |   |-- main.tsx
 |   |-- styles
-|   |   |-- App.css
+|   |   |-- App.module.css
+|   |   |-- GameRule.module.css
 |   |   `-- reset.css
+|   |-- utils
+|   |   `-- timeUtils.ts
 |   `-- vite-env.d.ts
 |-- test
 |   |-- components
 |   |   `-- App.test.tsx
 |   |-- setupTests.ts
+|   |-- utils
+|   |   `-- timeUtils.test.ts
 |   `-- vitest-env.d.ts
 |-- tsconfig.app.json
 |-- tsconfig.json
@@ -76,7 +83,7 @@ $ yarn install
 |-- vite.config.ts
 `-- yarn.lock
 
-6 directories, 20 files
+8 directories, 25 files
 ```
 
 ## Provided `scripts`:

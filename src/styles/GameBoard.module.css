@@ -1,5 +1,6 @@
 .gameBoard {
   margin: 16px 0;
+  position: relative;
 }
 
 .gameBoardRow {
@@ -21,4 +22,17 @@
   border-bottom-width: 1px;
   width: 10%;
   aspect-ratio: 1 / 1;
+}
+
+.pausedGameBoard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
 }

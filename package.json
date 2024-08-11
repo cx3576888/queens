@@ -17,8 +17,10 @@
     "my-tree-folders": "find . -path ./node_modules -prune -o -path ./.git -prune -o -type d -print"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.2.7",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-redux": "^9.1.2"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",

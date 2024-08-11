@@ -46,6 +46,18 @@ $ yarn install
 
 - Ready to write unit tests!
 
+# Redux Toolkit
+- Install:
+  ```bash
+  $ yarn add @reduxjs/toolkit
+  $ yarn add react-redux
+  ```
+
+- Create a `state` folder for all redux-toolkit files
+  - Do `configureStore` inside `store.ts`, and export useful types `RootState` and `AppDispatch`
+
+- Use `<Provider>` from `react-redux` to modify `main.tsx`
+
 # File structure:
 ```bash
 .
@@ -59,12 +71,16 @@ $ yarn install
 |-- src
 |   |-- components
 |   |   |-- App.tsx
+|   |   |-- GameBoard.tsx
 |   |   |-- GameRule.tsx
 |   |   `-- Timer.tsx
 |   |-- global.css
 |   |-- main.tsx
+|   |-- state
+|   |   `-- store.ts
 |   |-- styles
 |   |   |-- App.module.css
+|   |   |-- GameBoard.module.css
 |   |   |-- GameRule.module.css
 |   |   `-- reset.css
 |   |-- utils
@@ -83,7 +99,7 @@ $ yarn install
 |-- vite.config.ts
 `-- yarn.lock
 
-8 directories, 25 files
+9 directories, 28 files
 ```
 
 ## Provided `scripts`:

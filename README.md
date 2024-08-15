@@ -54,9 +54,12 @@ $ yarn install
   ```
 
 - Create a `state` folder for all redux-toolkit files
-  - Do `configureStore` inside `store.ts`, and export useful types `RootState` and `AppDispatch`
+  - Do `configureStore` inside `store.ts`, and export useful types `RootState`, `AppStore` and `AppDispatch`
 
 - Use `<Provider>` from `react-redux` to modify `main.tsx`
+
+- For unit test purpose, define a reusable function `customRender` based on `render` from React Testing Library.\
+This function creates a new redux store instance every time, and wraps the component being tested with `<Provider store={store}></Provider>`
 
 # File structure:
 ```bash
@@ -95,6 +98,7 @@ $ yarn install
 |   |-- state
 |   |   `-- slices
 |   |       `-- timerSlice.test.ts
+|   |-- test-utils.tsx
 |   |-- utils
 |   |   `-- timeUtils.test.ts
 |   `-- vitest-env.d.ts
@@ -104,7 +108,7 @@ $ yarn install
 |-- vite.config.ts
 `-- yarn.lock
 
-12 directories, 30 files
+12 directories, 31 files
 ```
 
 ## Provided `scripts`:

@@ -48,6 +48,7 @@
     "src",
     "test/**/*.test.ts",
     "test/**/*.test.tsx",
-    "test/vitest-env.d.ts"
+    "test/vitest-env.d.ts",
+    "test/test-utils.tsx"
   ]
 }

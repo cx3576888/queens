@@ -1,9 +1,11 @@
+import type { RootState } from '../state/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsPaused, setNeedReset } from '../state/slices/timerSlice';
+
 import styles from '../styles/GameBoard.module.css';
 
 interface GameBoardProps {
   n: number;
-  isPaused: boolean;
-  setIsPaused: (isPaused: boolean) => void;
 }
 
 interface GameCell {
@@ -12,8 +14,10 @@ interface GameCell {
   col: number;
 }
 
-const GameBoard: React.FC<GameBoardProps> = ({ n, isPaused, setIsPaused }) => {
+const GameBoard: React.FC<GameBoardProps> = ({ n }) => {
   const rows: GameCell[][] = [];
+  const { isPaused } = useSelector((state: RootState) => state.timer);
+  const dispatch = useDispatch();
 
   for (let i = 0; i < n; i++) {
     rows[i] = [];
@@ -27,11 +31,20 @@ const GameBoard: React.FC<GameBoardProps> = ({ n, isPaused, setIsPaused }) => {
     }
   }
 
+  const continueClicked = () => {
+    dispatch(setIsPaused(false));
+  };
+
+  const newGameClicked = () => {
+    dispatch(setNeedReset(true));
+  };
+
   return (
     <div className={styles.gameBoard}>
       {isPaused &&
         <div className={styles.pausedGameBoard}>
-          <button onClick={() => setIsPaused(false)}>Continue</button>
+          <button onClick={continueClicked}>Continue</button>
+          <button onClick={newGameClicked}>New Game</button>
         </div>
       }
       {rows.map((row, i) => {

@@ -77,6 +77,8 @@ $ yarn install
 |   |-- global.css
 |   |-- main.tsx
 |   |-- state
+|   |   |-- slices
+|   |   |   `-- timerSlice.ts
 |   |   `-- store.ts
 |   |-- styles
 |   |   |-- App.module.css
@@ -90,6 +92,9 @@ $ yarn install
 |   |-- components
 |   |   `-- App.test.tsx
 |   |-- setupTests.ts
+|   |-- state
+|   |   `-- slices
+|   |       `-- timerSlice.test.ts
 |   |-- utils
 |   |   `-- timeUtils.test.ts
 |   `-- vitest-env.d.ts
@@ -99,7 +104,7 @@ $ yarn install
 |-- vite.config.ts
 `-- yarn.lock
 
-9 directories, 28 files
+12 directories, 30 files
 ```
 
 ## Provided `scripts`:

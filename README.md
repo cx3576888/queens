@@ -58,8 +58,14 @@ $ yarn install
 
 - Use `<Provider>` from `react-redux` to modify `main.tsx`
 
-- For unit test purpose, define a reusable function `customRender` based on `render` from React Testing Library.\
-This function creates a new redux store instance every time, and wraps the component being tested with `<Provider store={store}></Provider>`
+## For unit test:
+- Define two helper functions:
+  - `customRender` based on React Testing Library's `render`
+  - `customRenderHook` based on React Testing Library's `renderHook`
+- Each helper function:
+  - has an optional parameter `store`, which should be a Redux store instance
+  - creates a new Redux store instance automatically if `store` is not provided
+  - wraps the component or custom hook being tested with `<Provider store={store}></Provider>` automatically
 
 # File structure:
 ```bash
@@ -95,7 +101,10 @@ This function creates a new redux store instance every time, and wraps the compo
 |   `-- vite-env.d.ts
 |-- test
 |   |-- components
-|   |   `-- App.test.tsx
+|   |   |-- App.test.tsx
+|   |   `-- Timer.test.tsx
+|   |-- hooks
+|   |   `-- useReduxSecondCounter.test.tsx
 |   |-- setupTests.ts
 |   |-- state
 |   |   `-- slices
@@ -110,7 +119,7 @@ This function creates a new redux store instance every time, and wraps the compo
 |-- vite.config.ts
 `-- yarn.lock
 
-13 directories, 32 files
+14 directories, 34 files
 ```
 
 ## Provided `scripts`:

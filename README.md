@@ -78,6 +78,8 @@ This function creates a new redux store instance every time, and wraps the compo
 |   |   |-- GameRule.tsx
 |   |   `-- Timer.tsx
 |   |-- global.css
+|   |-- hooks
+|   |   `-- useReduxSecondCounter.tsx
 |   |-- main.tsx
 |   |-- state
 |   |   |-- slices
@@ -108,7 +110,7 @@ This function creates a new redux store instance every time, and wraps the compo
 |-- vite.config.ts
 `-- yarn.lock
 
-12 directories, 31 files
+13 directories, 32 files
 ```
 
 ## Provided `scripts`:

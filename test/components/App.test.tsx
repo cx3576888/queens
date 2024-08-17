@@ -1,6 +1,6 @@
 import { customRender } from '../test-utils';
-import { screen } from '@testing-library/react';
 import App from '../../src/components/App';
+import { screen } from '@testing-library/react';
 
 test('renders App component', () => {
   customRender(<App />);

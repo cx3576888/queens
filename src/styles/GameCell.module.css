@@ -1,0 +1,15 @@
+.gameCell.firstRow {
+  border-top-width: 1px;
+}
+
+.gameCell:first-child {
+  border-left-width: 1px;
+}
+
+.gameCell {
+  border-style: solid;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  width: 10%;
+  aspect-ratio: 1 / 1;
+}

@@ -1,6 +1,7 @@
 import type { RootState } from '../state/store';
 import { useSelector } from 'react-redux';
 import PauseOverlay from './PauseOverlay';
+import GameCell, { type GameCellProps } from './GameCell';
 
 import styles from '../styles/GameBoard.module.css';
 
@@ -8,14 +9,8 @@ interface GameBoardProps {
   n: number;
 }
 
-interface GameCell {
-  id: string;
-  row: number;
-  col: number;
-}
-
 const GameBoard: React.FC<GameBoardProps> = ({ n }) => {
-  const rows: GameCell[][] = [];
+  const rows: GameCellProps[][] = [];
   const { isPaused } = useSelector((state: RootState) => state.timer);
 
   for (let i = 0; i < n; i++) {
@@ -24,7 +19,8 @@ const GameBoard: React.FC<GameBoardProps> = ({ n }) => {
       const cell = {
         id: `${i + 1}-${j + 1}`,
         row: i + 1,
-        col: j + 1
+        col: j + 1,
+        firstRow: i === 0
       }
       rows[i]!.push(cell);
     }
@@ -37,17 +33,13 @@ const GameBoard: React.FC<GameBoardProps> = ({ n }) => {
         return (
           <div key={'row' + (i + 1)} className={styles.gameBoardRow}>
             {row.map(cell => {
-              return (
-                <div key={cell.id} className={styles.gameCell}>
-                  row: {cell.row}, col: {cell.col}
-                </div>
-              )
+              return <GameCell key={cell.id} {...cell} />
             })}
           </div>
         )
       })}
     </div>
   );
-}
+};
 
 export default GameBoard;

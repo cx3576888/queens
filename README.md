@@ -76,12 +76,19 @@ $ yarn install
 |-- index.html
 |-- package.json
 |-- public
-|   `-- favicon.svg
+|   |-- favicon.svg
+|   `-- puzzles
+|       `-- (3 files omitted)
+|-- scripts
+|   |-- download_puzzle.js
+|   `-- download_puzzle.ts
 |-- src
 |   |-- components
 |   |   |-- App.tsx
 |   |   |-- GameBoard.tsx
+|   |   |-- GameCell.tsx
 |   |   |-- GameRule.tsx
+|   |   |-- PauseOverlay.tsx
 |   |   `-- Timer.tsx
 |   |-- global.css
 |   |-- hooks
@@ -94,7 +101,9 @@ $ yarn install
 |   |-- styles
 |   |   |-- App.module.css
 |   |   |-- GameBoard.module.css
+|   |   |-- GameCell.module.css
 |   |   |-- GameRule.module.css
+|   |   |-- PauseOverlay.module.css
 |   |   `-- reset.css
 |   |-- utils
 |   |   `-- timeUtils.ts
@@ -102,6 +111,7 @@ $ yarn install
 |-- test
 |   |-- components
 |   |   |-- App.test.tsx
+|   |   |-- PauseOverlay.test.tsx
 |   |   `-- Timer.test.tsx
 |   |-- hooks
 |   |   `-- useReduxSecondCounter.test.tsx
@@ -119,7 +129,7 @@ $ yarn install
 |-- vite.config.ts
 `-- yarn.lock
 
-14 directories, 34 files
+16 directories, 44 files
 ```
 
 ## Provided `scripts`:
@@ -131,3 +141,8 @@ $ yarn install
   - `yarn my-ls` prints all files and folders for every folder
   - `yarn my-tree-path` should have same output as `yarn tree-path`
   - `yarn my-tree-folders` should have same output as `yarn tree-folders`
+
+# Puzzles
+- Puzzles are from [LinkedIn Queens](https://www.linkedin.com/games/queens/)
+- Add json files into `public/puzzles`, then there will be more puzzles to play with
+- Check `download_puzzle.ts` for more details

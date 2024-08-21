@@ -14,7 +14,8 @@
     "tree-folders": "tree -afid -I \"node_modules|.git\"",
     "my-ls": "ls -aR --ignore={node_modules,.git} | grep -v '\\./\\?$'",
     "my-tree-path": "find . -path ./node_modules -prune -o -path ./.git -prune -o -print",
-    "my-tree-folders": "find . -path ./node_modules -prune -o -path ./.git -prune -o -type d -print"
+    "my-tree-folders": "find . -path ./node_modules -prune -o -path ./.git -prune -o -type d -print",
+    "build:puzzle-downloader": "tsc scripts/download_puzzle.ts --target es2015 --skipLibCheck --removeComments"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",

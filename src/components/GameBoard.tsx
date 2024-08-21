@@ -21,7 +21,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ n }) => {
         row: i + 1,
         col: j + 1,
         firstRow: i === 0
-      }
+      };
       rows[i]!.push(cell);
     }
   }
@@ -33,10 +33,10 @@ const GameBoard: React.FC<GameBoardProps> = ({ n }) => {
         return (
           <div key={'row' + (i + 1)} className={styles.gameBoardRow}>
             {row.map(cell => {
-              return <GameCell key={cell.id} {...cell} />
+              return <GameCell key={cell.id} {...cell} />;
             })}
           </div>
-        )
+        );
       })}
     </div>
   );

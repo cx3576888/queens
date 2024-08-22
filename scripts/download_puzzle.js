@@ -20,9 +20,14 @@ function getPuzzleJson() {
     }
     const n = Math.sqrt(queensCells.length);
     queensCells.forEach((queensCell, index) => {
-        res.queens.push({
-            row: (index - index % n) / n + 1,
-            col: index % n + 1,
+        const row = (index - index % n) / n + 1;
+        const col = index % n + 1;
+        if (col === 1) {
+            res.queens.push([]);
+        }
+        res.queens[row - 1].push({
+            row,
+            col,
             colorIndex: getColorIndex(queensCell.className),
         });
     });

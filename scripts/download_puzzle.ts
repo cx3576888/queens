@@ -7,8 +7,12 @@ How to use:
   4. Put the downloaded json file into "public/puzzles"
 */
 
-type PuzzleCellType = { row: number; col: number; colorIndex: number; };
-type PuzzleType = { queens: PuzzleCellType[]; };
+// identical as declared in GameCell.tsx
+interface GameCellProps {
+  row: number;
+  col: number;
+  colorIndex: number;
+}
 
 function getPuzzleId() {
   let puzzleId = -1;
@@ -22,7 +26,7 @@ function getPuzzleId() {
 }
 
 function getPuzzleJson() {
-  const res: PuzzleType = { queens: [] };
+  const res: { queens: GameCellProps[][]; } = { queens: [] };
   const queensGrid = document.querySelector('main')?.querySelector('#queens-grid');
   const queensCells = queensGrid?.querySelectorAll('.queens-cell');
   if (!queensGrid || !queensCells) {
@@ -33,9 +37,14 @@ function getPuzzleJson() {
   const n = Math.sqrt(queensCells.length);
   queensCells.forEach((queensCell, index) => {
     // LinkedIn index starts at 0, but my index starts at 1
-    res.queens.push({
-      row: (index - index % n) / n + 1,
-      col: index % n + 1,
+    const row = (index - index % n) / n + 1;
+    const col = index % n + 1;
+    if (col === 1) {
+      res.queens.push([]);
+    }
+    res.queens[row - 1].push({
+      row,
+      col,
       colorIndex: getColorIndex(queensCell.className),
     });
   });

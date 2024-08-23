@@ -78,7 +78,7 @@ $ yarn install
 |-- public
 |   |-- favicon.svg
 |   `-- puzzles
-|       `-- (3 files omitted)
+|       `-- (7 files omitted)
 |-- scripts
 |   |-- download_puzzle.js
 |   `-- download_puzzle.ts
@@ -129,7 +129,7 @@ $ yarn install
 |-- vite.config.ts
 `-- yarn.lock
 
-16 directories, 44 files
+16 directories, 48 files
 ```
 
 ## Provided `scripts`:

@@ -35,9 +35,9 @@ const GameBoard: React.FC<GameBoardProps> = ({ puzzleNumber }) => {
       {isPaused && <PauseOverlay />}
       {puzzle.map((row, i) => {
         return (
-          <div key={`row-${i + 1}`} className={styles.gameBoardRow}>
+          <div key={`#${puzzleNumber}_row${i + 1}`} className={styles.gameBoardRow}>
             {row.map(cell => {
-              return <GameCell key={`${cell.row}-${cell.col}`} {...cell} />;
+              return <GameCell key={`#${puzzleNumber}_${cell.row}-${cell.col}`} {...cell} />;
             })}
           </div>
         );

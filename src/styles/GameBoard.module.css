@@ -1,6 +1,7 @@
 .gameBoard {
   margin: 16px 0;
   position: relative;
+  background-color: black;
 }
 
 .gameBoardRow {

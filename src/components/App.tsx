@@ -7,7 +7,7 @@ import GameBoard from './GameBoard';
 import GameRule from './GameRule';
 
 const App: React.FC = () => {
-  const puzzleNumbers = [109, 110, 111, 112, 113, 114];
+  const puzzleNumbers = [100, 109, 110, 111, 112, 113, 114];
   const [puzzleNumberIndex, setPuzzleNumberIndex] = useState(0);
   const dispatch = useDispatch();
 

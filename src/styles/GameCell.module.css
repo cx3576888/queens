@@ -10,6 +10,74 @@
   border-style: solid;
   border-right-width: 1px;
   border-bottom-width: 1px;
-  width: 10%;
+  width: 100%;
   aspect-ratio: 1 / 1;
+}
+
+.gameCell:hover {
+  opacity: 0.8;
+}
+
+.gameCellColor1 {
+  background-color: #bba3e2;
+}
+
+.gameCellColor2 {
+  background-color: #ffc992;
+}
+
+.gameCellColor3 {
+  background-color: #96beff;
+}
+
+.gameCellColor4 {
+  background-color: #b3dfa0;
+}
+
+.gameCellColor5 {
+  background-color: #dfdfdf;
+}
+
+.gameCellColor6 {
+  background-color: #dfa0bf;
+}
+
+.gameCellColor7 {
+  background-color: #a3d2d8;
+}
+
+.gameCellColor8 {
+  background-color: #ff7b60;
+}
+
+.gameCellColor9 {
+  background-color: #e6f388;
+}
+
+.gameCellColor10 {
+  background-color: #b9b29e;
+}
+
+.gameCellColor11 {
+  background-color: #62efea;
+}
+
+.gameCellColor12 {
+  background-color: #ff93f3;
+}
+
+.gameCellColor13 {
+  background-color: #8acc6d;
+}
+
+.gameCellColor14 {
+  background-color: #729aec;
+}
+
+.gameCellColor15 {
+  background-color: #c387e0;
+}
+
+.gameCellColor16 {
+  background-color: #ffe04b;
 }

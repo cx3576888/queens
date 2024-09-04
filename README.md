@@ -78,7 +78,7 @@ $ yarn install
 |-- public
 |   |-- favicon.svg
 |   `-- puzzles
-|       `-- (7 files omitted)
+|       `-- (62 files omitted)
 |-- scripts
 |   |-- download_puzzle.js
 |   `-- download_puzzle.ts
@@ -106,6 +106,7 @@ $ yarn install
 |   |   |-- PauseOverlay.module.css
 |   |   `-- reset.css
 |   |-- utils
+|   |   |-- puzzleNumberUtils.ts
 |   |   `-- timeUtils.ts
 |   `-- vite-env.d.ts
 |-- test
@@ -129,7 +130,7 @@ $ yarn install
 |-- vite.config.ts
 `-- yarn.lock
 
-16 directories, 48 files
+16 directories, 104 files
 ```
 
 ## Provided `scripts`:

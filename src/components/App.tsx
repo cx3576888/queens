@@ -2,12 +2,13 @@ import styles from '../styles/App.module.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setIsPaused } from '../state/slices/timerSlice';
+import { getPuzzleNumbers, latestPuzzleNumber } from '../utils/puzzleNumberUtils';
 import Timer from './Timer';
 import GameBoard from './GameBoard';
 import GameRule from './GameRule';
 
 const App: React.FC = () => {
-  const puzzleNumbers = [100, 109, 110, 111, 112, 113, 114];
+  const puzzleNumbers = getPuzzleNumbers(latestPuzzleNumber);
   const [puzzleNumberIndex, setPuzzleNumberIndex] = useState(0);
   const dispatch = useDispatch();
 

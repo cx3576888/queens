@@ -1,8 +1,10 @@
 import type { RootState } from '../state/store';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import type { PuzzleJsonType } from '../../scripts/download_puzzle';
 import PauseOverlay from './PauseOverlay';
-import GameCell, { type GameCellProps } from './GameCell';
+import GameCell from './GameCell';
+import Cell from '../models/cellModel';
 
 import styles from '../styles/GameBoard.module.css';
 
@@ -11,7 +13,7 @@ interface GameBoardProps {
 }
 
 const GameBoard: React.FC<GameBoardProps> = ({ puzzleNumber }) => {
-  const [puzzle, setPuzzle] = useState<GameCellProps[][]>([]);
+  const [puzzle, setPuzzle] = useState<Cell[][]>([]);
   const { isPaused } = useSelector((state: RootState) => state.timer);
 
   useEffect(() => {
@@ -21,8 +23,13 @@ const GameBoard: React.FC<GameBoardProps> = ({ puzzleNumber }) => {
         if (!response.ok) {
           throw new Error(`Response status: ${response.status}`);
         }
-        const data: { queens: GameCellProps[][]; } = await response.json();
-        setPuzzle(data.queens);
+        const data: PuzzleJsonType = await response.json();
+        const newPuzzle = data.queens.map((row) => {
+          return row.map((cell) => {
+            return new Cell(cell.row, cell.col, cell.colorIndex);
+          });
+        });
+        setPuzzle(newPuzzle);
       } catch (e) {
         console.error(e);
       }
@@ -36,8 +43,8 @@ const GameBoard: React.FC<GameBoardProps> = ({ puzzleNumber }) => {
       {puzzle.map((row, i) => {
         return (
           <div key={`#${puzzleNumber}_row${i + 1}`} className={styles.gameBoardRow}>
-            {row.map(cell => {
-              return <GameCell key={`#${puzzleNumber}_${cell.row}-${cell.col}`} {...cell} />;
+            {row.map(cellInstance => {
+              return <GameCell key={`#${puzzleNumber}_${cellInstance.row}-${cellInstance.col}`} cellInstance={cellInstance} />;
             })}
           </div>
         );

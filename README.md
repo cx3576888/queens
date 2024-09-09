@@ -94,6 +94,8 @@ $ yarn install
 |   |-- hooks
 |   |   `-- useReduxSecondCounter.tsx
 |   |-- main.tsx
+|   |-- models
+|   |   `-- cellModel.ts
 |   |-- state
 |   |   |-- slices
 |   |   |   `-- timerSlice.ts
@@ -130,7 +132,7 @@ $ yarn install
 |-- vite.config.ts
 `-- yarn.lock
 
-16 directories, 104 files
+17 directories, 105 files
 ```
 
 ## Provided `scripts`:

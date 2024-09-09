@@ -7,12 +7,15 @@ How to use:
   4. Put the downloaded json file into "public/puzzles"
 */
 
-// identical as declared in GameCell.tsx
-interface GameCellProps {
+type PuzzleCellType = {
   row: number;
   col: number;
   colorIndex: number;
-}
+};
+
+export type PuzzleJsonType = {
+  queens: PuzzleCellType[][];
+};
 
 function getPuzzleId() {
   let puzzleId = -1;
@@ -26,7 +29,7 @@ function getPuzzleId() {
 }
 
 function getPuzzleJson() {
-  const res: { queens: GameCellProps[][]; } = { queens: [] };
+  const res: PuzzleJsonType = { queens: [] };
   const queensGrid = document.querySelector('main')?.querySelector('#queens-grid');
   const queensCells = queensGrid?.querySelectorAll('.queens-cell');
   if (!queensGrid || !queensCells) {
@@ -42,7 +45,7 @@ function getPuzzleJson() {
     if (col === 1) {
       res.queens.push([]);
     }
-    res.queens[row - 1].push({
+    res.queens[row - 1]!.push({
       row,
       col,
       colorIndex: getColorIndex(queensCell.className),

@@ -55,3 +55,4 @@ function downloadPuzzleJson() {
     link.click();
 }
 downloadPuzzleJson();
+export {};

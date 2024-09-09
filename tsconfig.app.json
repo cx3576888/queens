@@ -46,6 +46,7 @@
   },
   "include": [
     "src",
+    "scripts",
     "test/**/*.test.ts",
     "test/**/*.test.tsx",
     "test/vitest-env.d.ts",

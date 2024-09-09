@@ -24,9 +24,9 @@ const App: React.FC = () => {
   return (
     <div data-testid="app-testid" className={styles.app}>
       <Timer />
-      Queens #{puzzleNumbers[puzzleNumberIndex]} {<button onClick={handleTogglePuzzleNumber}>Toggle Puzzle Number</button>}
+      Queens #{puzzleNumbers[puzzleNumberIndex]} <button onClick={handleTogglePuzzleNumber}>Toggle Puzzle Number</button>
       <GameBoard puzzleNumber={puzzleNumbers[puzzleNumberIndex]!} />
-      {<button onClick={handlePause}>Pause</button>}
+      <button onClick={handlePause}>Pause</button>
       <GameRule />
     </div>
   );

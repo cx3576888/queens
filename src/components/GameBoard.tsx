@@ -29,6 +29,11 @@ const GameBoard: React.FC<GameBoardProps> = ({ puzzleNumber }) => {
             return new Cell(cell.row, cell.col, cell.colorIndex);
           });
         });
+        for (let i = 0; i < newPuzzle.length; i++) {
+          for (let j = 0; j < newPuzzle[i]!.length; j++) {
+            newPuzzle[i]![j]!.prepareBordersMark(newPuzzle[i - 1]?.[j], newPuzzle[i]![j + 1], newPuzzle[i + 1]?.[j], newPuzzle[i]![j - 1]);
+          }
+        }
         setPuzzle(newPuzzle);
       } catch (e) {
         console.error(e);

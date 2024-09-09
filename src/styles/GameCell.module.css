@@ -1,21 +1,14 @@
-.gameCell.firstRow {
-  border-top-width: 1px;
-}
-
-.gameCell:first-child {
-  border-left-width: 1px;
-}
-
 .gameCell {
-  border-style: solid;
-  border-right-width: 1px;
-  border-bottom-width: 1px;
-  width: 100%;
+  border: 1px solid #303030;
+  box-sizing: border-box;
   aspect-ratio: 1 / 1;
+  width: 20px;
+  flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.5em;
+  color: #303030;
   user-select: none;
 }
 
@@ -48,7 +41,7 @@
 }
 
 .gameCellColor7 {
-  background-color: #a3d2d8;
+  background-color: #6a7bf0;
 }
 
 .gameCellColor8 {
@@ -85,4 +78,20 @@
 
 .gameCellColor16 {
   background-color: #ffe04b;
+}
+
+.wideBorderTop {
+  border-top-width: 3px;
+}
+
+.wideBorderRight {
+  border-right-width: 3px;
+}
+
+.wideBorderBottom {
+  border-bottom-width: 3px;
+}
+
+.gameCell:first-child {
+  border-left-width: 3px;
 }

@@ -1,4 +1,12 @@
 export type CurrDisplayType = 'empty' | 'X' | 'queen';
+type BorderMarkType = 'nothing' | 'sameColor' | 'differentColor';
+type BordersMarkType = {
+  top: BorderMarkType;
+  right: BorderMarkType;
+  bottom: BorderMarkType;
+  left: BorderMarkType;
+};
+
 type UpdateReactStateFunctions = {
   setCurrDisplay: (currDisplay: CurrDisplayType) => void;
   setIsWrong: (isWrong: boolean) => void;
@@ -18,6 +26,7 @@ class Cell {
     setCurrDisplay: () => { },
     setIsWrong: () => { },
   };
+  public bordersMark: BordersMarkType = { top: 'sameColor', right: 'sameColor', bottom: 'sameColor', left: 'sameColor' };
 
   get currDisplay() {
     return this._currDisplay;
@@ -38,6 +47,15 @@ class Cell {
   public prepareReactStateFns(functions: UpdateReactStateFunctions) {
     this.updateReactState.setIsWrong = functions.setIsWrong;
     this.updateReactState.setCurrDisplay = functions.setCurrDisplay;
+  }
+
+  public prepareBordersMark(topCell?: Cell, rightCell?: Cell, bottomCell?: Cell, leftCell?: Cell) {
+    this.bordersMark = {
+      top: topCell ? (topCell.colorIndex === this.colorIndex ? 'sameColor' : 'differentColor') : 'nothing',
+      right: rightCell ? (rightCell.colorIndex === this.colorIndex ? 'sameColor' : 'differentColor') : 'nothing',
+      bottom: bottomCell ? (bottomCell.colorIndex === this.colorIndex ? 'sameColor' : 'differentColor') : 'nothing',
+      left: leftCell ? (leftCell.colorIndex === this.colorIndex ? 'sameColor' : 'differentColor') : 'nothing',
+    };
   }
 
   public toggleCurrDisplay() {

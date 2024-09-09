@@ -12,7 +12,13 @@ const GameCell: React.FC<GameCellProps> = ({ cellInstance }) => {
   const [, setIsWrong] = useState<boolean>(false);
   cellInstance.prepareReactStateFns({ setCurrDisplay, setIsWrong });
 
-  const className = styles.gameCell + (cellInstance.row === 1 ? ` ${styles.firstRow} ` : ' ') + styles[`gameCellColor${cellInstance.colorIndex}`];
+  const className =
+    styles.gameCell
+    + ' '
+    + styles[`gameCellColor${cellInstance.colorIndex}`]
+    + (cellInstance.row === 1 ? ` ${styles.wideBorderTop}` : '')
+    + (cellInstance.bordersMark.right !== 'sameColor' ? ` ${styles.wideBorderRight}` : '')
+    + (cellInstance.bordersMark.bottom !== 'sameColor' ? ` ${styles.wideBorderBottom}` : '');
 
   const handleCellClick = () => () => {
     cellInstance.toggleCurrDisplay();
@@ -23,7 +29,7 @@ const GameCell: React.FC<GameCellProps> = ({ cellInstance }) => {
       case 'empty':
         return '';
       case 'X':
-        return '✖︎';
+        return '×';
       case 'queen':
         return '♛';
     }

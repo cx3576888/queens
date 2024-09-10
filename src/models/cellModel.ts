@@ -45,8 +45,7 @@ class Cell {
   }
 
   public prepareReactStateFns(functions: UpdateReactStateFunctions) {
-    this.updateReactState.setIsWrong = functions.setIsWrong;
-    this.updateReactState.setCurrDisplay = functions.setCurrDisplay;
+    Object.assign(this.updateReactState, functions);
   }
 
   public prepareBordersMark(topCell?: Cell, rightCell?: Cell, bottomCell?: Cell, leftCell?: Cell) {
@@ -65,9 +64,11 @@ class Cell {
         break;
       case 'X':
         this.currDisplay = 'queen';
+        this.isWrong = true;
         break;
       case 'queen':
         this.currDisplay = 'empty';
+        this.isWrong = false;
         break;
     }
   }

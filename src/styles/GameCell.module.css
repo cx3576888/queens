@@ -12,6 +12,13 @@
   user-select: none;
 }
 
+.gameCellWrong {
+  background-image: url('/cellWrong.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .gameCell:hover {
   opacity: 0.8;
 }

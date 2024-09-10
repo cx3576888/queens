@@ -18,7 +18,8 @@ const GameCell: React.FC<GameCellProps> = ({ cellInstance }) => {
     + styles[`gameCellColor${cellInstance.colorIndex}`]
     + (cellInstance.row === 1 ? ` ${styles.wideBorderTop}` : '')
     + (cellInstance.bordersMark.right !== 'sameColor' ? ` ${styles.wideBorderRight}` : '')
-    + (cellInstance.bordersMark.bottom !== 'sameColor' ? ` ${styles.wideBorderBottom}` : '');
+    + (cellInstance.bordersMark.bottom !== 'sameColor' ? ` ${styles.wideBorderBottom}` : '')
+    + (cellInstance.isWrong ? ` ${styles.gameCellWrong}` : '');
 
   const handleCellClick = () => () => {
     cellInstance.toggleCurrDisplay();

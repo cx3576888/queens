@@ -1,5 +1,6 @@
 import type { RootState } from '../state/store';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLatestClick } from '../state/slices/boardSlice';
 import { useEffect, useState } from 'react';
 import Cell, { type CurrDisplayType } from '../models/cellModel';
 
@@ -10,7 +11,8 @@ interface GameCellProps {
 }
 
 const GameCell: React.FC<GameCellProps> = ({ cellInstance }) => {
-  const { clearBoardCount } = useSelector((state: RootState) => state.board);
+  const { clearBoardCount, latestClick } = useSelector((state: RootState) => state.board);
+  const dispatch = useDispatch();
 
   const [, setCurrDisplay] = useState<CurrDisplayType>('empty');
   const [, setIsWrong] = useState<boolean>(false);
@@ -27,11 +29,26 @@ const GameCell: React.FC<GameCellProps> = ({ cellInstance }) => {
 
   const handleCellClick = () => () => {
     cellInstance.toggleCurrDisplay();
+    dispatch(setLatestClick({
+      row: cellInstance.row,
+      col: cellInstance.col,
+      colorIndex: cellInstance.colorIndex,
+      display: cellInstance.currDisplay,
+    }));
   };
 
   useEffect(() => {
     cellInstance.reset();
   }, [clearBoardCount]);
+
+  useEffect(() => {
+    if (!latestClick) {
+      return;
+    }
+    if (cellInstance.isAffectedBy(latestClick)) {
+      cellInstance.autoSetCurrDisplay(latestClick);
+    }
+  }, [latestClick]);
 
   const display = () => {
     switch (cellInstance.currDisplay) {

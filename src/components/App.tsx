@@ -1,6 +1,7 @@
 import styles from '../styles/App.module.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { clearBoard } from '../state/slices/boardSlice';
 import { setIsPaused } from '../state/slices/timerSlice';
 import { getPuzzleNumbers, latestPuzzleNumber } from '../utils/puzzleNumberUtils';
 import Timer from './Timer';
@@ -16,6 +17,10 @@ const App: React.FC = () => {
     dispatch(setIsPaused(true));
   };
 
+  const handleClearBoard = () => {
+    dispatch(clearBoard());
+  };
+
   const handleTogglePuzzleNumber = () => {
     const newIndex = (puzzleNumberIndex + 1) % puzzleNumbers.length;
     setPuzzleNumberIndex(newIndex);
@@ -27,6 +32,7 @@ const App: React.FC = () => {
       Queens #{puzzleNumbers[puzzleNumberIndex]} <button onClick={handleTogglePuzzleNumber}>Toggle Puzzle Number</button>
       <GameBoard puzzleNumber={puzzleNumbers[puzzleNumberIndex]!} />
       <button onClick={handlePause}>Pause</button>
+      <button onClick={handleClearBoard}>Clear Board</button>
       <GameRule />
     </div>
   );

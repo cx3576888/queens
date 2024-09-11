@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
+import boardReducer from './slices/boardSlice';
 import timerReducer from './slices/timerSlice';
 
 const setupStore = () => {
   return configureStore({
     reducer: {
-      timer: timerReducer
+      board: boardReducer,
+      timer: timerReducer,
     },
   });
 };

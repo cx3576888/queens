@@ -7,7 +7,7 @@ How to use:
   4. Put the downloaded json file into "public/puzzles"
 */
 
-type PuzzleCellType = {
+export type PuzzleCellType = {
   row: number;
   col: number;
   colorIndex: number;

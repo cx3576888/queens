@@ -76,6 +76,7 @@ $ yarn install
 |-- index.html
 |-- package.json
 |-- public
+|   |-- cellWrong.svg
 |   |-- favicon.svg
 |   `-- puzzles
 |       `-- (62 files omitted)
@@ -98,6 +99,7 @@ $ yarn install
 |   |   `-- cellModel.ts
 |   |-- state
 |   |   |-- slices
+|   |   |   |-- boardSlice.ts
 |   |   |   `-- timerSlice.ts
 |   |   `-- store.ts
 |   |-- styles
@@ -121,6 +123,7 @@ $ yarn install
 |   |-- setupTests.ts
 |   |-- state
 |   |   `-- slices
+|   |       |-- boardSlice.test.ts
 |   |       `-- timerSlice.test.ts
 |   |-- test-utils.tsx
 |   |-- utils
@@ -132,7 +135,7 @@ $ yarn install
 |-- vite.config.ts
 `-- yarn.lock
 
-17 directories, 105 files
+17 directories, 108 files
 ```
 
 ## Provided `scripts`:

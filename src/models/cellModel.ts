@@ -1,3 +1,5 @@
+import type { PuzzleCellType } from "../../scripts/download_puzzle";
+
 export type CurrDisplayType = 'empty' | 'X' | 'queen';
 type BorderMarkType = 'nothing' | 'sameColor' | 'differentColor';
 type BordersMarkType = {
@@ -6,11 +8,11 @@ type BordersMarkType = {
   bottom: BorderMarkType;
   left: BorderMarkType;
 };
-
 type UpdateReactStateFunctions = {
   setCurrDisplay: (currDisplay: CurrDisplayType) => void;
   setIsWrong: (isWrong: boolean) => void;
 };
+export type ClickType = PuzzleCellType & { display: CurrDisplayType; };
 
 class Cell {
   constructor(
@@ -55,6 +57,11 @@ class Cell {
       bottom: bottomCell ? (bottomCell.colorIndex === this.colorIndex ? 'sameColor' : 'differentColor') : 'nothing',
       left: leftCell ? (leftCell.colorIndex === this.colorIndex ? 'sameColor' : 'differentColor') : 'nothing',
     };
+  }
+
+  public reset() {
+    this.currDisplay = 'empty';
+    this.isWrong = false;
   }
 
   public toggleCurrDisplay() {

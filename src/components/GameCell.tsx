@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import type { RootState } from '../state/store';
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import Cell, { type CurrDisplayType } from '../models/cellModel';
 
 import styles from '../styles/GameCell.module.css';
@@ -8,6 +10,8 @@ interface GameCellProps {
 }
 
 const GameCell: React.FC<GameCellProps> = ({ cellInstance }) => {
+  const { clearBoardCount } = useSelector((state: RootState) => state.board);
+
   const [, setCurrDisplay] = useState<CurrDisplayType>('empty');
   const [, setIsWrong] = useState<boolean>(false);
   cellInstance.prepareReactStateFns({ setCurrDisplay, setIsWrong });
@@ -24,6 +28,10 @@ const GameCell: React.FC<GameCellProps> = ({ cellInstance }) => {
   const handleCellClick = () => () => {
     cellInstance.toggleCurrDisplay();
   };
+
+  useEffect(() => {
+    cellInstance.reset();
+  }, [clearBoardCount]);
 
   const display = () => {
     switch (cellInstance.currDisplay) {

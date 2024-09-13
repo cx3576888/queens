@@ -1,4 +1,4 @@
-import { calculateTime, padZeros, roundNumber } from "../../src/utils/timeUtils";
+import { roundNumber, calculateTime, padZeros } from '../../src/utils/timeUtils';
 
 describe('timeUtils', () => {
   test('roundNumber', () => {
@@ -77,4 +77,3 @@ describe('timeUtils', () => {
     });
   });
 });
-

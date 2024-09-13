@@ -120,6 +120,10 @@ $ yarn install
 |   |   |-- App.test.tsx
 |   |   |-- PauseOverlay.test.tsx
 |   |   `-- Timer.test.tsx
+|   |-- data
+|   |   `-- puzzles
+|   |       |-- testPuzzle1.json
+|   |       `-- testPuzzle2.json
 |   |-- hooks
 |   |   `-- useReduxSecondCounter.test.tsx
 |   |-- setupTests.ts
@@ -129,6 +133,7 @@ $ yarn install
 |   |       `-- timerSlice.test.ts
 |   |-- test-utils.tsx
 |   |-- utils
+|   |   |-- puzzleNumberUtils.test.ts
 |   |   `-- timeUtils.test.ts
 |   `-- vitest-env.d.ts
 |-- tsconfig.app.json
@@ -137,7 +142,7 @@ $ yarn install
 |-- vite.config.ts
 `-- yarn.lock
 
-17 directories, 110 files
+19 directories, 113 files
 ```
 
 ## Provided `scripts`:

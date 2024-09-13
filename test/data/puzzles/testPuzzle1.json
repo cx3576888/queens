@@ -1,0 +1,28 @@
+{
+  "queens": [
+    [
+      { "row": 1, "col": 1, "colorIndex": 1 },
+      { "row": 1, "col": 2, "colorIndex": 1 },
+      { "row": 1, "col": 3, "colorIndex": 1 },
+      { "row": 1, "col": 4, "colorIndex": 2 }
+    ],
+    [
+      { "row": 2, "col": 1, "colorIndex": 1 },
+      { "row": 2, "col": 2, "colorIndex": 1 },
+      { "row": 2, "col": 3, "colorIndex": 1 },
+      { "row": 2, "col": 4, "colorIndex": 2 }
+    ],
+    [
+      { "row": 3, "col": 1, "colorIndex": 3 },
+      { "row": 3, "col": 2, "colorIndex": 1 },
+      { "row": 3, "col": 3, "colorIndex": 1 },
+      { "row": 3, "col": 4, "colorIndex": 4 }
+    ],
+    [
+      { "row": 4, "col": 1, "colorIndex": 3 },
+      { "row": 4, "col": 2, "colorIndex": 3 },
+      { "row": 4, "col": 3, "colorIndex": 4 },
+      { "row": 4, "col": 4, "colorIndex": 4 }
+    ]
+  ]
+}

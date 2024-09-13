@@ -20,7 +20,9 @@ const GameBoard: React.FC<GameBoardProps> = ({ puzzleNumber }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`puzzles/queens${puzzleNumber}.json`);
+        const puzzleUrl = `puzzles/queens${puzzleNumber}.json`;
+        // const puzzleUrl = `../../test/data/puzzles/testPuzzle${puzzleNumber}.json`; // testPuzzles for easier debug
+        const response = await fetch(puzzleUrl);
         if (!response.ok) {
           throw new Error(`Response status: ${response.status}`);
         }

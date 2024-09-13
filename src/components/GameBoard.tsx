@@ -1,6 +1,7 @@
 import type { RootState } from '../state/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearBoard, setN } from '../state/slices/boardSlice';
+import { setIsPaused, setNeedReset } from '../state/slices/timerSlice';
 import { useEffect, useState } from 'react';
 import { useCheckBoard } from '../hooks/useCheckBoard';
 import type { PuzzleJsonType } from '../../scripts/download_puzzle';
@@ -47,16 +48,22 @@ const GameBoard: React.FC<GameBoardProps> = ({ puzzleNumber }) => {
       }
     };
     dispatch(clearBoard());
+    dispatch(setIsPaused(true));
+    dispatch(setNeedReset(true));
     fetchData();
   }, [puzzleNumber]);
 
   useCheckBoard(puzzle);
 
+  useEffect(() => {
+    if (isWin) {
+      dispatch(setIsPaused(true));
+    }
+  }, [isWin]);
+
   return (
     <div className={styles.gameBoard}>
-      {isPaused && <PauseOverlay />}
-      {!isWin && <div className={styles.boardMessage}>gogogo!</div>}
-      {isWin && <div className={styles.boardMessage}>You Win!</div>}
+      {isPaused && !isWin && <PauseOverlay />}
       {puzzle.map((row, i) => {
         return (
           <div key={`#${puzzleNumber}_row${i + 1}`} className={styles.gameBoardRow}>

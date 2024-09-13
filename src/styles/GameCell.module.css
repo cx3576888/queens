@@ -19,6 +19,20 @@
   background-repeat: no-repeat;
 }
 
+.gameCellWin {
+  animation: rotateQueen 1.5s linear infinite;
+}
+
+@keyframes rotateQueen {
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
 .gameCell:hover {
   opacity: 0.8;
 }

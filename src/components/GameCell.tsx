@@ -11,7 +11,7 @@ interface GameCellProps {
 }
 
 const GameCell: React.FC<GameCellProps> = ({ cellInstance }) => {
-  const { clearBoardCount, latestClick, wrongCells } = useSelector((state: RootState) => state.board);
+  const { clearBoardCount, latestClick, wrongCells, isWin } = useSelector((state: RootState) => state.board);
   const dispatch = useDispatch();
 
   const [, setCurrDisplay] = useState<CurrDisplayType>('empty');
@@ -28,6 +28,9 @@ const GameCell: React.FC<GameCellProps> = ({ cellInstance }) => {
     + (cellInstance.isWrong ? ` ${styles.gameCellWrong}` : '');
 
   const handleCellClick = () => () => {
+    if (isWin) {
+      return;
+    }
     cellInstance.toggleCurrDisplay();
     const latestClick = {
       row: cellInstance.row,
@@ -64,11 +67,13 @@ const GameCell: React.FC<GameCellProps> = ({ cellInstance }) => {
   const display = () => {
     switch (cellInstance.currDisplay) {
       case 'empty':
-        return '';
+        return <span></span>;
       case 'X':
-        return '×';
+        return <span>×</span>;
       case 'queen':
-        return '♛';
+        return isWin ?
+          <span className={styles.gameCellWin}>♛</span> :
+          <span>♛</span>;
     }
   };
 

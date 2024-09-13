@@ -93,6 +93,7 @@ $ yarn install
 |   |   `-- Timer.tsx
 |   |-- global.css
 |   |-- hooks
+|   |   |-- useCheckBoard.tsx
 |   |   `-- useReduxSecondCounter.tsx
 |   |-- main.tsx
 |   |-- models
@@ -110,6 +111,7 @@ $ yarn install
 |   |   |-- PauseOverlay.module.css
 |   |   `-- reset.css
 |   |-- utils
+|   |   |-- boardUtils.ts
 |   |   |-- puzzleNumberUtils.ts
 |   |   `-- timeUtils.ts
 |   `-- vite-env.d.ts
@@ -135,7 +137,7 @@ $ yarn install
 |-- vite.config.ts
 `-- yarn.lock
 
-17 directories, 108 files
+17 directories, 110 files
 ```
 
 ## Provided `scripts`:

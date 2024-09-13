@@ -1,24 +1,29 @@
-import reducer, { setIsPaused, setNeedReset, type TimerState } from '../../../src/state/slices/timerSlice';
+import reducer, { type TimerState, setIsPaused, setNeedReset } from '../../../src/state/slices/timerSlice';
 
-test('should return timerSlice initial state', () => {
-  expect(reducer(undefined, { type: 'unknown' })).toEqual({
-    isPaused: true,
-    needReset: false
+describe('timerSlice', () => {
+  let initialState: TimerState;
+  beforeEach(() => {
+    initialState = {
+      isPaused: true,
+      needReset: false
+    };
   });
-});
 
-test('setIsPaused should change isPaused state', () => {
-  const previousState: TimerState = { isPaused: true, needReset: false };
-  expect(reducer(previousState, setIsPaused(false))).toEqual({
-    isPaused: false,
-    needReset: false
+  test('should return timerSlice initial state', () => {
+    expect(reducer(undefined, { type: 'unknown' })).toEqual(initialState);
   });
-});
 
-test('setNeedReset should change needReset state', () => {
-  const previousState: TimerState = { isPaused: true, needReset: false };
-  expect(reducer(previousState, setNeedReset(true))).toEqual({
-    isPaused: true,
-    needReset: true
+  test('setIsPaused action', () => {
+    expect(reducer(initialState, setIsPaused(false))).toEqual({
+      isPaused: false,
+      needReset: false
+    });
+  });
+
+  test('setNeedReset action', () => {
+    expect(reducer(initialState, setNeedReset(true))).toEqual({
+      isPaused: true,
+      needReset: true
+    });
   });
 });

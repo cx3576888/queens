@@ -1,6 +1,7 @@
 import type { RootState } from '../state/store';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { useCheckBoard } from '../hooks/useCheckBoard';
 import type { PuzzleJsonType } from '../../scripts/download_puzzle';
 import PauseOverlay from './PauseOverlay';
 import GameCell from './GameCell';
@@ -41,6 +42,8 @@ const GameBoard: React.FC<GameBoardProps> = ({ puzzleNumber }) => {
     };
     fetchData();
   }, [puzzleNumber]);
+
+  useCheckBoard(puzzle);
 
   return (
     <div className={styles.gameBoard}>

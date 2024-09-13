@@ -1,24 +1,68 @@
-import reducer, { setLatestClick, clearBoard, type BoardState } from '../../../src/state/slices/boardSlice';
+import reducer, { type BoardState, clearBoard, setLatestClick, addToQueenArr, removeFromQueenArr, setWrongCells } from '../../../src/state/slices/boardSlice';
 
-test('should return boardSlice initial state', () => {
-  expect(reducer(undefined, { type: 'unknown' })).toEqual({
-    latestClick: null,
-    clearBoardCount: 0
+describe('boardSlice', () => {
+  let initialState: BoardState;
+  beforeEach(() => {
+    initialState = {
+      clearBoardCount: 0,
+      latestClick: null,
+      queenArr: [],
+      wrongCells: [],
+    };
   });
-});
 
-test('setLatestClick should change latestClick state', () => {
-  const previousState: BoardState = { latestClick: null, clearBoardCount: 0 };
-  expect(reducer(previousState, setLatestClick({ row: 1, col: 1, colorIndex: 2, display: 'X' }))).toEqual({
-    latestClick: { row: 1, col: 1, colorIndex: 2, display: 'X' },
-    clearBoardCount: 0
+  test('should return boardSlice initial state', () => {
+    expect(reducer(undefined, { type: 'unknown' })).toEqual(initialState);
   });
-});
 
-test('clearBoard should change clearBoardCount state', () => {
-  const previousState: BoardState = { latestClick: null, clearBoardCount: 0 };
-  expect(reducer(previousState, clearBoard())).toEqual({
-    latestClick: null,
-    clearBoardCount: 1
+  test('clearBoard action', () => {
+    expect(reducer(initialState, clearBoard())).toEqual({
+      clearBoardCount: 1,
+      latestClick: null,
+      queenArr: [],
+      wrongCells: [],
+    });
+  });
+
+  test('setLatestClick action', () => {
+    expect(reducer(initialState, setLatestClick({ row: 1, col: 1, colorIndex: 2, display: 'X' }))).toEqual({
+      clearBoardCount: 0,
+      latestClick: { row: 1, col: 1, colorIndex: 2, display: 'X' },
+      queenArr: [],
+      wrongCells: [],
+    });
+  });
+
+  test('addToQueenArr action', () => {
+    expect(reducer(initialState, addToQueenArr({ row: 1, col: 1, colorIndex: 2 }))).toEqual({
+      clearBoardCount: 0,
+      latestClick: null,
+      queenArr: [{ row: 1, col: 1, colorIndex: 2 }],
+      wrongCells: [],
+    });
+  });
+
+  test('removeFromQueenArr action', () => {
+    const previousState: BoardState = {
+      clearBoardCount: 0,
+      latestClick: null,
+      queenArr: [{ row: 1, col: 1, colorIndex: 2 }, { row: 1, col: 2, colorIndex: 2 }],
+      wrongCells: [],
+    };
+    expect(reducer(previousState, removeFromQueenArr({ row: 1, col: 1, colorIndex: 2 }))).toEqual({
+      clearBoardCount: 0,
+      latestClick: null,
+      queenArr: [{ row: 1, col: 2, colorIndex: 2 }],
+      wrongCells: [],
+    });
+  });
+
+  test('setWrongCells action', () => {
+    expect(reducer(initialState, setWrongCells([{ row: 1, col: 1, colorIndex: 2 }]))).toEqual({
+      clearBoardCount: 0,
+      latestClick: null,
+      queenArr: [],
+      wrongCells: [{ row: 1, col: 1, colorIndex: 2 }],
+    });
   });
 });

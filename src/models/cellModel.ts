@@ -1,6 +1,7 @@
 import type { PuzzleCellType } from "../../scripts/download_puzzle";
 
 export type CurrDisplayType = 'empty' | 'X' | 'queen';
+export type PuzzleCellWithDisplayType = PuzzleCellType & { display: CurrDisplayType; };
 type BorderMarkType = 'nothing' | 'sameColor' | 'differentColor';
 type BordersMarkType = {
   top: BorderMarkType;
@@ -12,7 +13,6 @@ type UpdateReactStateFunctions = {
   setCurrDisplay: (currDisplay: CurrDisplayType) => void;
   setIsWrong: (isWrong: boolean) => void;
 };
-export type ClickType = PuzzleCellType & { display: CurrDisplayType; };
 
 class Cell {
   constructor(
@@ -94,14 +94,25 @@ class Cell {
     }
   }
 
-  public isAffectedBy(latestClick: ClickType) {
-    if (this.isSelf(latestClick)) {
-      return false;
-    }
-    return this.row === latestClick.row || this.col === latestClick.col || this.colorIndex === latestClick.colorIndex || this.isNeighbor(latestClick);
+  /**
+   * Draw a 3x3 square around the given cell, and check if this cell is inside the square
+   */
+  public isNeighborOf(givenCell: PuzzleCellType) {
+    return Math.abs(this.row - givenCell.row) <= 1 && Math.abs(this.col - givenCell.col) <= 1;
   }
 
-  public autoSetCurrDisplay(latestClick: ClickType) {
+  public isAffectedBy(givenCell: PuzzleCellType) {
+    if (this.isSelf(givenCell)) {
+      return false;
+    }
+    return this.row === givenCell.row || this.col === givenCell.col || this.colorIndex === givenCell.colorIndex || this.isNeighborOf(givenCell);
+  }
+
+  public isIncludedIn(givenCells: PuzzleCellType[]) {
+    return givenCells.some(givenCell => this.isSelf(givenCell));
+  }
+
+  public autoSetCurrDisplay(latestClick: PuzzleCellWithDisplayType) {
     if (this._autoXCount < 0) {
       return;
     }
@@ -134,12 +145,8 @@ class Cell {
   /**********************************************************************************
    * Private Methods
    **********************************************************************************/
-  private isSelf(latestClick: ClickType) {
-    return this.row === latestClick.row && this.col === latestClick.col;
-  }
-
-  private isNeighbor(latestClick: ClickType) {
-    return !this.isSelf(latestClick) && Math.abs(this.row - latestClick.row) <= 1 && Math.abs(this.col - latestClick.col) <= 1;
+  private isSelf(givenCell: PuzzleCellType) {
+    return this.row === givenCell.row && this.col === givenCell.col;
   }
   /**********************************************************************************
    * End of Private Methods

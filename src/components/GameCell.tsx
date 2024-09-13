@@ -1,6 +1,6 @@
 import type { RootState } from '../state/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLatestClick } from '../state/slices/boardSlice';
+import { addToQueenArr, removeFromQueenArr, setLatestClick } from '../state/slices/boardSlice';
 import { useEffect, useState } from 'react';
 import Cell, { type CurrDisplayType } from '../models/cellModel';
 
@@ -11,7 +11,7 @@ interface GameCellProps {
 }
 
 const GameCell: React.FC<GameCellProps> = ({ cellInstance }) => {
-  const { clearBoardCount, latestClick } = useSelector((state: RootState) => state.board);
+  const { clearBoardCount, latestClick, wrongCells } = useSelector((state: RootState) => state.board);
   const dispatch = useDispatch();
 
   const [, setCurrDisplay] = useState<CurrDisplayType>('empty');
@@ -29,12 +29,19 @@ const GameCell: React.FC<GameCellProps> = ({ cellInstance }) => {
 
   const handleCellClick = () => () => {
     cellInstance.toggleCurrDisplay();
-    dispatch(setLatestClick({
+    const latestClick = {
       row: cellInstance.row,
       col: cellInstance.col,
       colorIndex: cellInstance.colorIndex,
       display: cellInstance.currDisplay,
-    }));
+    };
+    dispatch(setLatestClick(latestClick));
+    if (cellInstance.currDisplay === 'queen') {
+      dispatch(addToQueenArr(latestClick));
+    }
+    if (cellInstance.currDisplay === 'empty') {
+      dispatch(removeFromQueenArr(latestClick));
+    }
   };
 
   useEffect(() => {
@@ -49,6 +56,10 @@ const GameCell: React.FC<GameCellProps> = ({ cellInstance }) => {
       cellInstance.autoSetCurrDisplay(latestClick);
     }
   }, [latestClick]);
+
+  useEffect(() => {
+    cellInstance.isWrong = cellInstance.isIncludedIn(wrongCells);
+  }, [wrongCells]);
 
   const display = () => {
     switch (cellInstance.currDisplay) {

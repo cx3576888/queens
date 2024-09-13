@@ -1,6 +1,6 @@
 import type { RootState } from '../state/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { setWrongCells } from '../state/slices/boardSlice';
+import { setWrongCellsAndCheckWin } from '../state/slices/boardSlice';
 import { useEffect } from 'react';
 import { getAffectedCellGroups, getNumberOfQueens } from '../utils/boardUtils';
 import Cell from '../models/cellModel';
@@ -22,6 +22,6 @@ export const useCheckBoard = (puzzle: Cell[][]) => {
         }
       });
     });
-    dispatch(setWrongCells(wrongCells));
+    dispatch(setWrongCellsAndCheckWin(wrongCells));
   }, [queenArr]);
 };

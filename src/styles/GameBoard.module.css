@@ -8,3 +8,9 @@
   display: flex;
   justify-content: center;
 }
+
+.boardMessage {
+  position: absolute;
+  right: 0;
+  top: -25px;
+}

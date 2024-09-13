@@ -4,26 +4,36 @@ import type { PuzzleCellType } from '../../../scripts/download_puzzle';
 
 
 export interface BoardState {
+  n: number;
   clearBoardCount: number;
   latestClick: null | PuzzleCellWithDisplayType;
   queenArr: PuzzleCellType[];
   wrongCells: PuzzleCellType[];
+  isWin: boolean;
 }
 
 const initialState: BoardState = {
+  n: -1,
   clearBoardCount: 0,
   latestClick: null,
   queenArr: [],
   wrongCells: [],
+  isWin: false,
 };
 
 const boardSlice = createSlice({
   name: 'board',
   initialState,
   reducers: {
+    setN: (state, action: PayloadAction<number>) => {
+      state.n = action.payload;
+    },
     clearBoard: (state) => {
       state.clearBoardCount++;
+      state.latestClick = null;
       state.queenArr = [];
+      state.wrongCells = [];
+      state.isWin = false;
     },
     setLatestClick: (state, action: PayloadAction<null | PuzzleCellWithDisplayType>) => {
       state.latestClick = action.payload;
@@ -35,11 +45,12 @@ const boardSlice = createSlice({
       const toRemove = action.payload;
       state.queenArr = state.queenArr.filter((queen) => !(queen.row === toRemove.row && queen.col === toRemove.col));
     },
-    setWrongCells: (state, action: PayloadAction<PuzzleCellType[]>) => {
+    setWrongCellsAndCheckWin: (state, action: PayloadAction<PuzzleCellType[]>) => {
       state.wrongCells = action.payload;
+      state.isWin = state.wrongCells.length === 0 && state.queenArr.length === state.n;
     }
   }
 });
 
-export const { clearBoard, setLatestClick, addToQueenArr, removeFromQueenArr, setWrongCells } = boardSlice.actions;
+export const { setN, clearBoard, setLatestClick, addToQueenArr, removeFromQueenArr, setWrongCellsAndCheckWin } = boardSlice.actions;
 export default boardSlice.reducer;

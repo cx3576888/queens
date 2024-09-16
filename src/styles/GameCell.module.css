@@ -1,13 +1,13 @@
 .gameCell {
   border: 1px solid #303030;
-  box-sizing: border-box;
   aspect-ratio: 1 / 1;
   width: 20px;
   flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.5em;
+  font-size: clamp(12px, 2.4px + 4vw, 24px);
+  line-height: 1;
   color: #303030;
   user-select: none;
 }

@@ -1,6 +1,6 @@
-.app {
+.main {
   min-width: 240px;
   max-width: 480px;
-  padding: 16px;
+  padding: 0 16px 16px 16px;
   margin: 0 auto;
 }

@@ -1,0 +1,28 @@
+.header {
+  background-color: #000000;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 0 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerText {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.navMenuItem {
+  list-style: none;
+}
+
+.navIcon {
+  height: 24px;
+}

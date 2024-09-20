@@ -78,6 +78,7 @@ $ yarn install
 |-- public
 |   |-- cellWrong.svg
 |   |-- favicon.svg
+|   |-- github-mark-white.svg
 |   `-- puzzles
 |       `-- (62 files omitted)
 |-- scripts
@@ -89,6 +90,7 @@ $ yarn install
 |   |   |-- GameBoard.tsx
 |   |   |-- GameCell.tsx
 |   |   |-- GameRule.tsx
+|   |   |-- Header.tsx
 |   |   |-- PauseOverlay.tsx
 |   |   |-- PuzzleControls.tsx
 |   |   |-- Timer.tsx
@@ -111,6 +113,7 @@ $ yarn install
 |   |   |-- GameBoard.module.css
 |   |   |-- GameCell.module.css
 |   |   |-- GameRule.module.css
+|   |   |-- Header.module.css
 |   |   |-- PauseOverlay.module.css
 |   |   |-- PuzzleControls.module.css
 |   |   |-- TopBar.module.css
@@ -148,7 +151,7 @@ $ yarn install
 |-- vite.config.ts
 `-- yarn.lock
 
-19 directories, 119 files
+19 directories, 122 files
 ```
 
 ## Provided `scripts`:

@@ -29,6 +29,7 @@ button {
 }
 
 button:disabled {
+  color: rgba(16, 16, 16, 0.3);
   cursor: not-allowed;
 }
 
@@ -39,6 +40,7 @@ button:disabled {
   }
 
   button {
+    color: #303030;
     background-color: #c0c0c0;
   }
 
@@ -54,6 +56,7 @@ button:disabled {
   }
 
   button {
+    color: #ffffff;
     background-color: #727272;
   }
 

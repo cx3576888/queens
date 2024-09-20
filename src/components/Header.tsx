@@ -12,8 +12,8 @@ const Header: React.FC = () => {
       <nav className={styles.nav}>
         <ul>
           <li className={styles.navMenuItem}>
-            <a href='https://www.google.com' target='_blank'>
-              <img className={styles.navIcon} src='/github-mark-white.svg' title='Fork me on GitHub' />
+            <a href="https://github.com/cx3576888/queens" target="_blank">
+              <img className={styles.navIcon} src="/github-mark-white.svg" title="Leave a star if you're having fun!" />
             </a>
           </li>
         </ul>

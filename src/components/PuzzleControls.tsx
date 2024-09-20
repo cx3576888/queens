@@ -2,7 +2,8 @@ import type { RootState } from '../state/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPuzzleNumber } from '../state/slices/gameSettingsSlice';
 import { useState } from 'react';
-import { getPuzzleNumbers, getTestPuzzleNumbers } from '../utils/puzzleUtils';
+import { getPuzzleNumbers } from '../utils/puzzleUtils';
+// import { getTestPuzzleNumbers } from '../utils/puzzleUtils';
 
 import styles from '../styles/PuzzleControls.module.css';
 

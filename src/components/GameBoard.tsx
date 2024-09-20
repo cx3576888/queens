@@ -1,13 +1,12 @@
 import type { RootState } from '../state/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearBoard, setN } from '../state/slices/boardSlice';
-import { setIsPaused, setNeedReset } from '../state/slices/timerSlice';
+import { setStatus } from '../state/slices/timerSlice';
 import { useEffect, useState } from 'react';
 import { useCheckBoard } from '../hooks/useCheckBoard';
-import type { PuzzleJsonType } from '../../scripts/download_puzzle';
+import { initPlaceholderPuzzle, initNewPuzzle } from '../utils/puzzleUtils';
 import PauseOverlay from './PauseOverlay';
 import GameCell from './GameCell';
-import Cell from '../models/cellModel';
 
 import styles from '../styles/GameBoard.module.css';
 
@@ -16,13 +15,14 @@ interface GameBoardProps {
 }
 
 const GameBoard: React.FC<GameBoardProps> = ({ puzzleNumber }) => {
-  const [puzzle, setPuzzle] = useState<Cell[][]>([]);
+  const [puzzle, setPuzzle] = useState(initPlaceholderPuzzle(6));
   const { isWin } = useSelector((state: RootState) => state.board);
-  const { isPaused } = useSelector((state: RootState) => state.timer);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
+      setPuzzle(initPlaceholderPuzzle(6));
+      dispatch(setStatus('loading'));
       try {
         const puzzleUrl = `puzzles/queens${puzzleNumber}.json`;
         // const puzzleUrl = `../../test/data/puzzles/testPuzzle${puzzleNumber}.json`; // testPuzzles for easier debug
@@ -30,26 +30,20 @@ const GameBoard: React.FC<GameBoardProps> = ({ puzzleNumber }) => {
         if (!response.ok) {
           throw new Error(`Response status: ${response.status}`);
         }
-        const data: PuzzleJsonType = await response.json();
-        dispatch(setN(data.queens.length));
-        const newPuzzle = data.queens.map((row) => {
-          return row.map((cell) => {
-            return new Cell(cell.row, cell.col, cell.colorIndex);
-          });
-        });
-        for (let i = 0; i < newPuzzle.length; i++) {
-          for (let j = 0; j < newPuzzle[i]!.length; j++) {
-            newPuzzle[i]![j]!.prepareBordersMark(newPuzzle[i - 1]?.[j], newPuzzle[i]![j + 1], newPuzzle[i + 1]?.[j], newPuzzle[i]![j - 1]);
-          }
-        }
+        const data = await response.json();
+        const newPuzzle = initNewPuzzle(data);
         setPuzzle(newPuzzle);
+        dispatch(setN(newPuzzle.length));
+        dispatch(setStatus('loadSuccess'));
+        dispatch(clearBoard());
       } catch (e) {
+        // queens${puzzleNumber}.json not exist, exists but invalid JSON, network error, etc
         console.error(e);
+        setPuzzle(initPlaceholderPuzzle(1));
+        dispatch(setN(-1));
+        dispatch(setStatus('loadError'));
       }
     };
-    dispatch(clearBoard());
-    dispatch(setIsPaused(true));
-    dispatch(setNeedReset(true));
     fetchData();
   }, [puzzleNumber]);
 
@@ -57,13 +51,13 @@ const GameBoard: React.FC<GameBoardProps> = ({ puzzleNumber }) => {
 
   useEffect(() => {
     if (isWin) {
-      dispatch(setIsPaused(true));
+      dispatch(setStatus('win'));
     }
   }, [isWin]);
 
   return (
     <div className={styles.gameBoard}>
-      {isPaused && !isWin && <PauseOverlay />}
+      <PauseOverlay />
       {puzzle.map((row, i) => {
         return (
           <div key={`#${puzzleNumber}_row${i + 1}`} className={styles.gameBoardRow}>

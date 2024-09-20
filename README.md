@@ -112,7 +112,7 @@ $ yarn install
 |   |   `-- reset.css
 |   |-- utils
 |   |   |-- boardUtils.ts
-|   |   |-- puzzleNumberUtils.ts
+|   |   |-- puzzleUtils.ts
 |   |   `-- timeUtils.ts
 |   `-- vite-env.d.ts
 |-- test
@@ -133,7 +133,7 @@ $ yarn install
 |   |       `-- timerSlice.test.ts
 |   |-- test-utils.tsx
 |   |-- utils
-|   |   |-- puzzleNumberUtils.test.ts
+|   |   |-- puzzleUtils.test.ts
 |   |   `-- timeUtils.test.ts
 |   `-- vitest-env.d.ts
 |-- tsconfig.app.json

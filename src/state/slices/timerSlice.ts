@@ -1,27 +1,24 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
+export type StatusType = 'loading' | 'loadError' | 'loadSuccess' | 'paused' | 'running' | 'win';
+
 export interface TimerState {
-  isPaused: boolean;
-  needReset: boolean;
+  status: StatusType;
 };
 
 const initialState: TimerState = {
-  isPaused: true,
-  needReset: false,
+  status: 'loading',
 };
 
 const timerSlice = createSlice({
   name: 'timer',
   initialState,
   reducers: {
-    setIsPaused: (state, action: PayloadAction<boolean>) => {
-      state.isPaused = action.payload;
-    },
-    setNeedReset: (state, action: PayloadAction<boolean>) => {
-      state.needReset = action.payload;
+    setStatus: (state, action: PayloadAction<StatusType>) => {
+      state.status = action.payload;
     }
   }
 });
 
-export const { setIsPaused, setNeedReset } = timerSlice.actions;
+export const { setStatus } = timerSlice.actions;
 export default timerSlice.reducer;

@@ -2,7 +2,7 @@ import { customRenderHook } from '../test-utils';
 import { useReduxSecondCounter } from '../../src/hooks/useReduxSecondCounter';
 import { act } from '@testing-library/react';
 import { setupStore } from '../../src/state/store';
-import { setIsPaused, setNeedReset } from '../../src/state/slices/timerSlice';
+import { setStatus } from '../../src/state/slices/timerSlice';
 
 describe('useReduxSecondCounter', () => {
   beforeEach(() => {
@@ -17,9 +17,9 @@ describe('useReduxSecondCounter', () => {
     expect(result.current).toBe(0);
   });
 
-  test('when isPaused is true, second does not change', () => {
+  test('status === loading: second does not change', () => {
     const store = setupStore();
-    store.dispatch(setIsPaused(true));
+    store.dispatch(setStatus('loading'));
     const { result } = customRenderHook(() => useReduxSecondCounter(), store);
 
     act(() => {
@@ -28,9 +28,49 @@ describe('useReduxSecondCounter', () => {
     expect(result.current).toBe(0);
   });
 
-  test('when isPaused is false, second increments by 0.1 every 100ms', () => {
+  test('status === loadSuccess: second does not change', () => {
     const store = setupStore();
-    store.dispatch(setIsPaused(false));
+    store.dispatch(setStatus('loadSuccess'));
+    const { result } = customRenderHook(() => useReduxSecondCounter(), store);
+    act(() => {
+      vi.advanceTimersByTime(200);
+    });
+    expect(result.current).toBe(0);
+  });
+
+  test('status === loadError: second does not change', () => {
+    const store = setupStore();
+    store.dispatch(setStatus('loadError'));
+    const { result } = customRenderHook(() => useReduxSecondCounter(), store);
+    act(() => {
+      vi.advanceTimersByTime(300);
+    });
+    expect(result.current).toBe(0);
+  });
+
+  test('status === paused: second does not change', () => {
+    const store = setupStore();
+    store.dispatch(setStatus('paused'));
+    const { result } = customRenderHook(() => useReduxSecondCounter(), store);
+    act(() => {
+      vi.advanceTimersByTime(400);
+    });
+    expect(result.current).toBe(0);
+  });
+
+  test('status === win: second does not change', () => {
+    const store = setupStore();
+    store.dispatch(setStatus('win'));
+    const { result } = customRenderHook(() => useReduxSecondCounter(), store);
+    act(() => {
+      vi.advanceTimersByTime(500);
+    });
+    expect(result.current).toBe(0);
+  });
+
+  test('status === running: second increments by 0.1 every 100ms', () => {
+    const store = setupStore();
+    store.dispatch(setStatus('running'));
     const { result } = customRenderHook(() => useReduxSecondCounter(), store);
 
     act(() => {
@@ -44,9 +84,9 @@ describe('useReduxSecondCounter', () => {
     expect(result.current).toBe(0.2);
   });
 
-  test('when needReset is true, second is reset to 0 and needReset is set back to false', () => {
+  test('status from running --> loading: second is reset to 0 and does not change', () => {
     const store = setupStore();
-    store.dispatch(setIsPaused(false));
+    store.dispatch(setStatus('running'));
     const { result } = customRenderHook(() => useReduxSecondCounter(), store);
 
     act(() => {
@@ -55,9 +95,13 @@ describe('useReduxSecondCounter', () => {
     expect(result.current).toBe(1);
 
     act(() => {
-      store.dispatch(setNeedReset(true));
+      store.dispatch(setStatus('loading'));
     });
     expect(result.current).toBe(0);
-    expect(store.getState().timer.needReset).toBe(false);
+
+    act(() => {
+      vi.advanceTimersByTime(1000);
+    });
+    expect(result.current).toBe(0);
   });
 });

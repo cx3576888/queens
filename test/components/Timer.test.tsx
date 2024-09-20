@@ -2,7 +2,7 @@ import { customRender } from '../test-utils';
 import Timer from '../../src/components/Timer';
 import { act, screen } from '@testing-library/react';
 import { setupStore } from '../../src/state/store';
-import { setIsPaused, setNeedReset } from '../../src/state/slices/timerSlice';
+import { setStatus } from '../../src/state/slices/timerSlice';
 
 describe('Timer', () => {
   beforeEach(() => {
@@ -17,9 +17,9 @@ describe('Timer', () => {
     expect(screen.getByText('000:00:00.0')).toBeInTheDocument();
   });
 
-  test('after 3723.4 seconds', () => {
+  test('run 3723.4 seconds', () => {
     const store = setupStore();
-    store.dispatch(setIsPaused(false));
+    store.dispatch(setStatus('running'));
     customRender(<Timer />, store);
 
     act(() => {
@@ -28,9 +28,9 @@ describe('Timer', () => {
     expect(screen.getByText('001:02:03.4')).toBeInTheDocument();
   });
 
-  test('after 1.2 seconds, then paused', () => {
+  test('run 1.2 seconds, then win', () => {
     const store = setupStore();
-    store.dispatch(setIsPaused(false));
+    store.dispatch(setStatus('running'));
     customRender(<Timer />, store);
 
     act(() => {
@@ -39,7 +39,7 @@ describe('Timer', () => {
     expect(screen.getByText('000:00:01.2')).toBeInTheDocument();
 
     act(() => {
-      store.dispatch(setIsPaused(true));
+      store.dispatch(setStatus('win'));
     });
     act(() => {
       vi.advanceTimersByTime(2400);
@@ -47,9 +47,9 @@ describe('Timer', () => {
     expect(screen.getByText('000:00:01.2')).toBeInTheDocument();
   });
 
-  test('after 1.2 seconds, then paused, then continued', () => {
+  test('run 1.2 seconds, then paused', () => {
     const store = setupStore();
-    store.dispatch(setIsPaused(false));
+    store.dispatch(setStatus('running'));
     customRender(<Timer />, store);
 
     act(() => {
@@ -58,7 +58,26 @@ describe('Timer', () => {
     expect(screen.getByText('000:00:01.2')).toBeInTheDocument();
 
     act(() => {
-      store.dispatch(setIsPaused(true));
+      store.dispatch(setStatus('paused'));
+    });
+    act(() => {
+      vi.advanceTimersByTime(2400);
+    });
+    expect(screen.getByText('000:00:01.2')).toBeInTheDocument();
+  });
+
+  test('run 1.2 seconds, then paused, then continued', () => {
+    const store = setupStore();
+    store.dispatch(setStatus('running'));
+    customRender(<Timer />, store);
+
+    act(() => {
+      vi.advanceTimersByTime(1200);
+    });
+    expect(screen.getByText('000:00:01.2')).toBeInTheDocument();
+
+    act(() => {
+      store.dispatch(setStatus('paused'));
     });
     act(() => {
       vi.advanceTimersByTime(2400);
@@ -66,7 +85,7 @@ describe('Timer', () => {
     expect(screen.getByText('000:00:01.2')).toBeInTheDocument();
 
     act(() => {
-      store.dispatch(setIsPaused(false));
+      store.dispatch(setStatus('running'));
     });
     act(() => {
       vi.advanceTimersByTime(2400);
@@ -74,9 +93,9 @@ describe('Timer', () => {
     expect(screen.getByText('000:00:03.6')).toBeInTheDocument();
   });
 
-  test('after 1.2 seconds, then reset', () => {
+  test('run 1.2 seconds, then reset', () => {
     const store = setupStore();
-    store.dispatch(setIsPaused(false));
+    store.dispatch(setStatus('running'));
     customRender(<Timer />, store);
 
     act(() => {
@@ -85,7 +104,7 @@ describe('Timer', () => {
     expect(screen.getByText('000:00:01.2')).toBeInTheDocument();
 
     act(() => {
-      store.dispatch(setNeedReset(true));
+      store.dispatch(setStatus('loading'));
     });
     expect(screen.getByText('000:00:00.0')).toBeInTheDocument();
   });

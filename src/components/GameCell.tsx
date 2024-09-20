@@ -27,7 +27,7 @@ const GameCell: React.FC<GameCellProps> = ({ cellInstance }) => {
     + (cellInstance.bordersMark.bottom !== 'sameColor' ? ` ${styles.wideBorderBottom}` : '')
     + (cellInstance.isWrong ? ` ${styles.gameCellWrong}` : '');
 
-  const handleCellClick = () => () => {
+  const handleCellClick = () => {
     if (isWin) {
       return;
     }
@@ -78,7 +78,7 @@ const GameCell: React.FC<GameCellProps> = ({ cellInstance }) => {
   };
 
   return (
-    <div className={className} onClick={handleCellClick()}>
+    <div className={className} onClick={handleCellClick}>
       {display()}
     </div>
   );

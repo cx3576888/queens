@@ -24,18 +24,33 @@ const App: React.FC = () => {
     dispatch(clearBoard());
   };
 
-  const handleTogglePuzzleNumber = () => {
-    const newIndex = (puzzleNumberIndex + 1) % puzzleNumbers.length;
+  const handlePrevious = () => {
+    handleChangePuzzle(false);
+  };
+
+  const handleNext = () => {
+    handleChangePuzzle(true);
+  };
+
+  const handleChangePuzzle = (nextOne: boolean) => {
+    const plus = nextOne ? 1 : -1;
+    const newIndex = (puzzleNumberIndex + plus + puzzleNumbers.length) % puzzleNumbers.length;
     setPuzzleNumberIndex(newIndex);
   };
 
   return (
     <div data-testid="app-testid" className={styles.app}>
-      <Timer />
-      Queens #{puzzleNumbers[puzzleNumberIndex]} <button onClick={handleTogglePuzzleNumber}>Toggle Puzzle Number</button>
+      <div className={styles.row}>
+        <button disabled={status !== 'running'} onClick={handlePause}>Pause</button>
+        <Timer />
+        <button disabled={status !== 'running'} onClick={handleClearBoard}>Clear Board</button>
+      </div>
       <GameBoard puzzleNumber={puzzleNumbers[puzzleNumberIndex]!} />
-      <button disabled={status !== 'running'} onClick={handlePause}>Pause</button>
-      <button disabled={status !== 'running'} onClick={handleClearBoard}>Clear Board</button>
+      <div className={styles.row}>
+        <button disabled={status === 'loading'} onClick={handlePrevious}>◀</button>
+        Queens #{puzzleNumbers[puzzleNumberIndex]}
+        <button disabled={status === 'loading'} onClick={handleNext}>▶</button>
+      </div>
       <GameRule />
     </div>
   );

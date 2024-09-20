@@ -4,10 +4,3 @@
   padding: 16px;
   margin: 0 auto;
 }
-
-.row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 8px 0;
-}

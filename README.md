@@ -90,7 +90,9 @@ $ yarn install
 |   |   |-- GameCell.tsx
 |   |   |-- GameRule.tsx
 |   |   |-- PauseOverlay.tsx
-|   |   `-- Timer.tsx
+|   |   |-- PuzzleControls.tsx
+|   |   |-- Timer.tsx
+|   |   `-- TopBar.tsx
 |   |-- global.css
 |   |-- hooks
 |   |   |-- useCheckBoard.tsx
@@ -101,6 +103,7 @@ $ yarn install
 |   |-- state
 |   |   |-- slices
 |   |   |   |-- boardSlice.ts
+|   |   |   |-- gameSettingsSlice.ts
 |   |   |   `-- timerSlice.ts
 |   |   `-- store.ts
 |   |-- styles
@@ -109,6 +112,8 @@ $ yarn install
 |   |   |-- GameCell.module.css
 |   |   |-- GameRule.module.css
 |   |   |-- PauseOverlay.module.css
+|   |   |-- PuzzleControls.module.css
+|   |   |-- TopBar.module.css
 |   |   `-- reset.css
 |   |-- utils
 |   |   |-- boardUtils.ts
@@ -130,6 +135,7 @@ $ yarn install
 |   |-- state
 |   |   `-- slices
 |   |       |-- boardSlice.test.ts
+|   |       |-- gameSettingsSlice.test.ts
 |   |       `-- timerSlice.test.ts
 |   |-- test-utils.tsx
 |   |-- utils
@@ -142,7 +148,7 @@ $ yarn install
 |-- vite.config.ts
 `-- yarn.lock
 
-19 directories, 113 files
+19 directories, 119 files
 ```
 
 ## Provided `scripts`:

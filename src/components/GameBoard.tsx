@@ -10,13 +10,10 @@ import GameCell from './GameCell';
 
 import styles from '../styles/GameBoard.module.css';
 
-interface GameBoardProps {
-  puzzleNumber: number;
-}
-
-const GameBoard: React.FC<GameBoardProps> = ({ puzzleNumber }) => {
+const GameBoard: React.FC = () => {
   const [puzzle, setPuzzle] = useState(initPlaceholderPuzzle(6));
   const { isWin } = useSelector((state: RootState) => state.board);
+  const { puzzleNumber } = useSelector((state: RootState) => state.gameSettings);
   const dispatch = useDispatch();
 
   useEffect(() => {

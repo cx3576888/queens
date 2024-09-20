@@ -1,170 +1,22 @@
-# React + TypeScript + Vite
+# Queens
 
-## Environment:
-- node v20.13.1
-- npm v10.5.2
-- yarn v1.22.22
+Play at https://queens-woad.vercel.app/
 
-## Create project:
-```bash
-$ yarn create vite queens --template react-ts
-$ cd queens/
-$ git init
-$ yarn install
-```
+The very same [LinkedIn Queens](https://www.linkedin.com/games/queens/) game!
 
-# Vitest:
-- Install:
-  ```bash
-  $ yarn add -D vitest
-  ```
+## Features
+- Auto-place ×'s
+- Auto-check and show errors
+- Pause the game
+- Previous daily LinkedIn puzzles to play with
 
-- Create a `test` folder for all test files
-  - Each unit test file should have the same name as its source file, be placed in the same relative path under `test`, and with `.test.ts` or `.test.tsx` as a suffix
-  - Example: `src/components/App.tsx` <--> `test/components/App.test.tsx`
+# Technical Details
+This project is built using:
+- React (function components)
+- Redux Toolkit
+- TypeScript
+- Vite
+- Vitest (with Jest and React Testing Library)
+- Yarn v1.22.22
 
-- Update `package.json`:\
-  Add `"test": "vitest"` into `"scripts"` section
-
-- Use `jsdom` environment and `testing-library` for convenience:
-  ```bash
-  $ yarn add -D jsdom
-  $ yarn add -D @testing-library/react @testing-library/jest-dom
-  ```
-  Got a "unmet peer dependency warning", so:
-  ```bash
-  $ yarn add -D @testing-library/dom
-  ```
-
-- Create `setupTests.ts` file
-
-- Create `vitest-env.d.ts` file
-
-- Set `environment`, `globals`, `setupFiles`, `include` properly inside `vite.config.ts`
-
-- Set `include` properly inside `tsconfig.app.json`
-
-- Ready to write unit tests!
-
-# Redux Toolkit
-- Install:
-  ```bash
-  $ yarn add @reduxjs/toolkit
-  $ yarn add react-redux
-  ```
-
-- Create a `state` folder for all redux-toolkit files
-  - Do `configureStore` inside `store.ts`, and export useful types `RootState`, `AppStore` and `AppDispatch`
-
-- Use `<Provider>` from `react-redux` to modify `main.tsx`
-
-## For unit test:
-- Define two helper functions:
-  - `customRender` based on React Testing Library's `render`
-  - `customRenderHook` based on React Testing Library's `renderHook`
-- Each helper function:
-  - has an optional parameter `store`, which should be a Redux store instance
-  - creates a new Redux store instance automatically if `store` is not provided
-  - wraps the component or custom hook being tested with `<Provider store={store}></Provider>` automatically
-
-# File structure:
-```bash
-.
-|-- .eslintrc.cjs
-|-- .gitignore
-|-- README.md
-|-- index.html
-|-- package.json
-|-- public
-|   |-- cellWrong.svg
-|   |-- favicon.svg
-|   |-- github-mark-white.svg
-|   `-- puzzles
-|       `-- (62 files omitted)
-|-- scripts
-|   |-- download_puzzle.js
-|   `-- download_puzzle.ts
-|-- src
-|   |-- components
-|   |   |-- App.tsx
-|   |   |-- GameBoard.tsx
-|   |   |-- GameCell.tsx
-|   |   |-- GameRule.tsx
-|   |   |-- Header.tsx
-|   |   |-- PauseOverlay.tsx
-|   |   |-- PuzzleControls.tsx
-|   |   |-- Timer.tsx
-|   |   `-- TopBar.tsx
-|   |-- global.css
-|   |-- hooks
-|   |   |-- useCheckBoard.tsx
-|   |   `-- useReduxSecondCounter.tsx
-|   |-- main.tsx
-|   |-- models
-|   |   `-- cellModel.ts
-|   |-- state
-|   |   |-- slices
-|   |   |   |-- boardSlice.ts
-|   |   |   |-- gameSettingsSlice.ts
-|   |   |   `-- timerSlice.ts
-|   |   `-- store.ts
-|   |-- styles
-|   |   |-- App.module.css
-|   |   |-- GameBoard.module.css
-|   |   |-- GameCell.module.css
-|   |   |-- GameRule.module.css
-|   |   |-- Header.module.css
-|   |   |-- PauseOverlay.module.css
-|   |   |-- PuzzleControls.module.css
-|   |   |-- TopBar.module.css
-|   |   `-- reset.css
-|   |-- utils
-|   |   |-- boardUtils.ts
-|   |   |-- puzzleUtils.ts
-|   |   `-- timeUtils.ts
-|   `-- vite-env.d.ts
-|-- test
-|   |-- components
-|   |   |-- App.test.tsx
-|   |   |-- PauseOverlay.test.tsx
-|   |   `-- Timer.test.tsx
-|   |-- data
-|   |   `-- puzzles
-|   |       |-- testPuzzle1.json
-|   |       `-- testPuzzle2.json
-|   |-- hooks
-|   |   `-- useReduxSecondCounter.test.tsx
-|   |-- setupTests.ts
-|   |-- state
-|   |   `-- slices
-|   |       |-- boardSlice.test.ts
-|   |       |-- gameSettingsSlice.test.ts
-|   |       `-- timerSlice.test.ts
-|   |-- test-utils.tsx
-|   |-- utils
-|   |   |-- puzzleUtils.test.ts
-|   |   `-- timeUtils.test.ts
-|   `-- vitest-env.d.ts
-|-- tsconfig.app.json
-|-- tsconfig.json
-|-- tsconfig.node.json
-|-- vite.config.ts
-`-- yarn.lock
-
-19 directories, 122 files
-```
-
-## Provided `scripts`:
-- You need `tree` command in your git bash (could try instruction of [this answer](https://superuser.com/questions/531592/how-to-add-the-tree-command-to-git-bash-in-windows#1141489)) for these commands:
-  - `yarn tree` prints a tree-like structure like above
-  - `yarn tree-path` prints all files and folders with full path
-  - `yarn tree-folders` prints all folders with full path
-- Alternatives if you don't have `tree` command:
-  - `yarn my-ls` prints all files and folders for every folder
-  - `yarn my-tree-path` should have same output as `yarn tree-path`
-  - `yarn my-tree-folders` should have same output as `yarn tree-folders`
-
-# Puzzles
-- Puzzles are from [LinkedIn Queens](https://www.linkedin.com/games/queens/)
-- Add json files into `public/puzzles`, then there will be more puzzles to play with
-- Check `download_puzzle.ts` for more details
+Deployed using Vercel

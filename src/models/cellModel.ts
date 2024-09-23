@@ -1,5 +1,3 @@
-import type { PuzzleCellType } from "../../scripts/download_puzzle";
-
 export type CurrDisplayType = 'empty' | 'X' | 'queen';
 export type PuzzleCellWithDisplayType = PuzzleCellType & { display: CurrDisplayType; };
 type BorderMarkType = 'nothing' | 'sameColor' | 'differentColor';

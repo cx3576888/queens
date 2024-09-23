@@ -4,7 +4,6 @@ import { setWrongCellsAndCheckWin } from '../state/slices/boardSlice';
 import { useEffect } from 'react';
 import { getAffectedCellGroups, getNumberOfQueens } from '../utils/boardUtils';
 import Cell from '../models/cellModel';
-import type { PuzzleCellType } from '../../scripts/download_puzzle';
 
 export const useCheckBoard = (puzzle: Cell[][]) => {
   const { queenArr } = useSelector((state: RootState) => state.board);

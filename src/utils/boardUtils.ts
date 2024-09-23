@@ -1,4 +1,3 @@
-import type { PuzzleCellType } from '../../scripts/download_puzzle';
 import type { PuzzleCellWithDisplayType } from '../models/cellModel';
 import type Cell from '../models/cellModel';
 

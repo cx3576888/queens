@@ -6,16 +6,7 @@ How to use:
   3. Open LinkedIn Queens page (https://www.linkedin.com/games/queens/), open devtool console, paste and run
   4. Put the downloaded json file into "public/puzzles"
 */
-
-export type PuzzleCellType = {
-  row: number;
-  col: number;
-  colorIndex: number;
-};
-
-export type PuzzleJsonType = {
-  queens: PuzzleCellType[][];
-};
+/// <reference path="../src/types/puzzle.d.ts" />
 
 function getPuzzleId() {
   let puzzleId = -1;

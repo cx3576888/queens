@@ -1,7 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { PuzzleCellWithDisplayType } from '../../models/cellModel';
-import type { PuzzleCellType } from '../../../scripts/download_puzzle';
-
 
 export interface BoardState {
   n: number;

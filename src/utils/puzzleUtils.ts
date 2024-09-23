@@ -1,4 +1,3 @@
-import type { PuzzleJsonType } from '../../scripts/download_puzzle';
 import Cell from '../models/cellModel';
 
 export const latestPuzzleNumber = 143;

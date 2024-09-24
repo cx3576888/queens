@@ -1,8 +1,8 @@
 # Queens
 
-Play at https://queens-woad.vercel.app/
+This project is the classic game [LinkedIn Queens](https://www.linkedin.com/games/queens/) with previous puzzles!
 
-The very same [LinkedIn Queens](https://www.linkedin.com/games/queens/) game!
+Play at https://queens-woad.vercel.app/
 
 ## Features
 - Auto-place ×'s

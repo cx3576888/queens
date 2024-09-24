@@ -6,3 +6,12 @@
   display: flex;
   justify-content: center;
 }
+
+.gameRule ul {
+  list-style-type: disc;
+  list-style-position: outside;
+}
+
+.gameRule ul > li {
+  margin-left: 1em;
+}

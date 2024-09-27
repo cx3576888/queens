@@ -4,3 +4,7 @@
   align-items: center;
   margin: 8px 0;
 }
+
+.topBarLeft {
+  display: flex;
+}

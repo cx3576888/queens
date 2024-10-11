@@ -16,6 +16,7 @@ const TopBar: React.FC = () => {
   };
 
   const handleClearBoard = () => {
+    console.log('click btn outside');
     dispatch(clearBoard());
   };
 

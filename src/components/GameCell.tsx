@@ -12,6 +12,7 @@ interface GameCellProps {
 
 const GameCell: React.FC<GameCellProps> = ({ cellInstance }) => {
   const { clearBoardCount, latestClick, wrongCells, isWin } = useSelector((state: RootState) => state.board);
+  const { enableAutoX, showErrors } = useSelector((state: RootState) => state.gameSettings);
   const dispatch = useDispatch();
 
   const [, setCurrDisplay] = useState<CurrDisplayType>('empty');
@@ -25,7 +26,7 @@ const GameCell: React.FC<GameCellProps> = ({ cellInstance }) => {
     + (cellInstance.row === 1 ? ` ${styles.wideBorderTop}` : '')
     + (cellInstance.bordersMark.right !== 'sameColor' ? ` ${styles.wideBorderRight}` : '')
     + (cellInstance.bordersMark.bottom !== 'sameColor' ? ` ${styles.wideBorderBottom}` : '')
-    + (cellInstance.isWrong ? ` ${styles.gameCellWrong}` : '');
+    + (showErrors && cellInstance.isWrong ? ` ${styles.gameCellWrong}` : '');
 
   const handleCellClick = () => {
     if (isWin) {
@@ -52,7 +53,7 @@ const GameCell: React.FC<GameCellProps> = ({ cellInstance }) => {
   }, [clearBoardCount]);
 
   useEffect(() => {
-    if (!latestClick) {
+    if (!latestClick || !enableAutoX) {
       return;
     }
     if (cellInstance.isAffectedBy(latestClick)) {

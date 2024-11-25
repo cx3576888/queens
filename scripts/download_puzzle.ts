@@ -22,9 +22,13 @@ function getPuzzleId() {
 function getPuzzleJson() {
   const res: PuzzleJsonType = { queens: [] };
   const queensGrid = document.querySelector('main')?.querySelector('#queens-grid');
-  const queensCells = queensGrid?.querySelectorAll('.queens-cell');
-  if (!queensGrid || !queensCells) {
-    console.error(`Something wrong!`);
+  if (!queensGrid) {
+    console.error(`Something wrong when finding #queens-grid!`);
+    return res;
+  }
+  const queensCells = queensGrid.querySelectorAll('.queens-cell-with-border');
+  if (!queensCells.length) {
+    console.error(`Something wrong when finding .queens-cell-with-border!`);
     return res;
   }
 

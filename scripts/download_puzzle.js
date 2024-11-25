@@ -13,9 +13,13 @@ function getPuzzleJson() {
     var _a;
     const res = { queens: [] };
     const queensGrid = (_a = document.querySelector('main')) === null || _a === void 0 ? void 0 : _a.querySelector('#queens-grid');
-    const queensCells = queensGrid === null || queensGrid === void 0 ? void 0 : queensGrid.querySelectorAll('.queens-cell');
-    if (!queensGrid || !queensCells) {
-        console.error(`Something wrong!`);
+    if (!queensGrid) {
+        console.error(`Something wrong when finding #queens-grid!`);
+        return res;
+    }
+    const queensCells = queensGrid.querySelectorAll('.queens-cell-with-border');
+    if (!queensCells.length) {
+        console.error(`Something wrong when finding .queens-cell-with-border!`);
         return res;
     }
     const n = Math.sqrt(queensCells.length);

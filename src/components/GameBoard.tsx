@@ -1,3 +1,4 @@
+import { useLoaderData } from 'react-router';
 import type { RootState } from '../state/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearBoard, setN } from '../state/slices/boardSlice';
@@ -11,9 +12,9 @@ import GameCell from './GameCell';
 import styles from '../styles/GameBoard.module.css';
 
 const GameBoard: React.FC = () => {
+  const { puzzleNumber } = useLoaderData();
   const [puzzle, setPuzzle] = useState(initPlaceholderPuzzle(6));
   const { isWin } = useSelector((state: RootState) => state.board);
-  const { puzzleNumber } = useSelector((state: RootState) => state.gameSettings);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,7 +22,7 @@ const GameBoard: React.FC = () => {
       setPuzzle(initPlaceholderPuzzle(6));
       dispatch(setStatus('loading'));
       try {
-        const puzzleUrl = `puzzles/queens${puzzleNumber}.json`;
+        const puzzleUrl = `/puzzles/queens${puzzleNumber}.json`;
         // const puzzleUrl = `../../test/data/puzzles/testPuzzle${puzzleNumber}.json`; // testPuzzles for easier debug
         const response = await fetch(puzzleUrl);
         if (!response.ok) {

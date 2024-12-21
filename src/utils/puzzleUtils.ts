@@ -3,14 +3,14 @@ import Cell from '../models/cellModel';
 export const latestPuzzleNumber = 233;
 export const numberOfTestPuzzles = 2;
 
-export const getPuzzleNumbers = () => {
-  const puzzleNumbers = [];
+// export const getPuzzleNumbers = () => {
+  export const puzzleNumbers: number[] = [];
   for (let i = latestPuzzleNumber; i >= 68; i--) {
     puzzleNumbers.push(i);
   }
   puzzleNumbers.push(66, 53);
-  return puzzleNumbers;
-};
+//   return puzzleNumbers;
+// };
 
 export const getTestPuzzleNumbers = () => {
   return Array.from({ length: numberOfTestPuzzles }, (_, i) => i + 1);

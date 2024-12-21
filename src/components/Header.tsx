@@ -1,10 +1,9 @@
-import type { RootState } from '../state/store';
-import { useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 
 import styles from '../styles/Header.module.css';
 
 const Header: React.FC = () => {
-  const { puzzleNumber } = useSelector((state: RootState) => state.gameSettings);
+  const { puzzleNumber } = useParams();
 
   return (
     <header className={styles.header}>

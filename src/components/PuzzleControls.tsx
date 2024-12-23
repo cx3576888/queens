@@ -7,6 +7,7 @@ import styles from '../styles/PuzzleControls.module.css';
 const PuzzleControls: React.FC = () => {
   const { puzzleNumber } = useParams();
   const navigate = useNavigate();
+  console.log('hi', puzzleNumber);
   const { status } = useSelector((state: RootState) => state.timer);
 
   const handleChangePuzzle = (olderOne: boolean) => {

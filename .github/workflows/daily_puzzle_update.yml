@@ -22,8 +22,8 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Install Chrome
-        uses: browser-actions/setup-chrome@v1
+      - name: Install Puppeteer-compatible Chromium
+        run: node node_modules/puppeteer/install.js
 
       - name: Run puppeteer script
         run: node puppeteer/auto_download_puzzle.js

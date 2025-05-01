@@ -25,13 +25,12 @@ import fs from 'fs';
       return getPuzzleId();
 
       function getPuzzleId() {
-        const span = document.querySelector('main').querySelector('.launch-footer__score-text');
-        console.log('hihihi', span.innerText);
-        return span.innerText;
-        // return span ? span.innerText.split('：')[1] : -1;
+        const text = document.querySelector('main').querySelector('.launch-footer__score-text').innerText;
+        // "編號：366", "No.366"
+        const separator = text.includes('：') ? '：' : '.';
+        return text.split(separator)[1];
       }
     });
-    console.log('hihihi ~~~', puzzleId);
     await page.click('.launch-footer__btn--start');
   } catch {
     const maxPuzzleId = fs

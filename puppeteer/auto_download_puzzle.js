@@ -2,10 +2,15 @@ import puppeteer from 'puppeteer';
 import fs from 'fs';
 
 (async () => {
-  const browser = await puppeteer.launch({
-    executablePath: 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
-    headless: true
-  });
+  const isGithub = process.env.GITHUB_ACTIONS === 'true';
+  const launchOptions = isGithub
+    ? { headless: 'new' }
+    : {
+      headless: true,
+      executablePath: 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
+    };
+
+  const browser = await puppeteer.launch(launchOptions);
   const page = await browser.newPage();
   page.setDefaultNavigationTimeout(60000);
   await page.goto('https://www.linkedin.com/games/view/queens/desktop/', { waitUntil: 'networkidle0' });

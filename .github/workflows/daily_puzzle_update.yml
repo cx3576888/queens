@@ -1,0 +1,31 @@
+name: Daily Puzzle Update
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - github-action
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Run puppeteer script
+        run: node puppeteer/auto_download_puzzle.js
+        env:
+          GITHUB_ACTIONS: true

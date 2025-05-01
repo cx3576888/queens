@@ -26,9 +26,12 @@ import fs from 'fs';
 
       function getPuzzleId() {
         const span = document.querySelector('main').querySelector('.launch-footer__score-text');
-        return span ? span.innerText.split('：')[1] : -1;
+        console.log('hihihi', span.innerText);
+        return span.innerText;
+        // return span ? span.innerText.split('：')[1] : -1;
       }
     });
+    console.log('hihihi ~~~', puzzleId);
     await page.click('.launch-footer__btn--start');
   } catch {
     const maxPuzzleId = fs

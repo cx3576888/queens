@@ -4,7 +4,10 @@ import fs from 'fs';
 (async () => {
   const isGithub = process.env.GITHUB_ACTIONS === 'true';
   const launchOptions = isGithub
-    ? { headless: 'new' }
+    ? {
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    }
     : {
       headless: true,
       executablePath: 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'

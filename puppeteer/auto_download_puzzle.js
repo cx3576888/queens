@@ -89,4 +89,5 @@ import fs from 'fs';
   fs.writeFileSync(`./public/puzzles/queens${puzzleId}.json`, JSON.stringify(puzzleJson));
   console.log(`- Download queens${puzzleId}.json success: `, new Date());
   await browser.close();
+  fs.appendFileSync(process.env.GITHUB_OUTPUT, `PUZZLE_ID=${puzzleId}\n`);
 })();

@@ -26,6 +26,12 @@ jobs:
         run: node node_modules/puppeteer/install.js
 
       - name: Run puppeteer script
+        id: download-puzzle
         run: node puppeteer/auto_download_puzzle.js
         env:
           GITHUB_ACTIONS: true
+
+      - name: Edit puzzleUtils.ts
+        run: node scripts/edit_puzzle_number.js
+        env:
+          MY_PUZZLE_ID: ${{ steps.download-puzzle.outputs.PUZZLE_ID }}

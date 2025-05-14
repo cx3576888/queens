@@ -3,7 +3,7 @@ name: Daily Puzzle Update
 on:
   workflow_dispatch:
   schedule:
-    - cron: '10 5 * * *'
+    - cron: '50 8 * * *'
 
 jobs:
   main-job:

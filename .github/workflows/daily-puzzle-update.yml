@@ -1,0 +1,43 @@
+name: Daily Puzzle Update
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '10 5 * * *'
+
+jobs:
+  main-job:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Install Puppeteer-compatible Chromium
+        run: node node_modules/puppeteer/install.js
+
+      - name: Run puppeteer script
+        id: auto-download-puzzle
+        run: node scripts/github/auto-download-puzzle.js
+        env:
+          GITHUB_ACTIONS: true
+
+      - name: Edit puzzleUtils.ts
+        run: node scripts/github/edit-puzzle-number.js
+        env:
+          PUZZLE_ID: ${{ steps.auto-download-puzzle.outputs.PUZZLE_ID }}
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: daily puzzle update

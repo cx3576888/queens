@@ -10,6 +10,9 @@ jobs:
   fetch:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -35,3 +38,7 @@ jobs:
         run: node scripts/edit_puzzle_number.js
         env:
           MY_PUZZLE_ID: ${{ steps.download-puzzle.outputs.PUZZLE_ID }}
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: automatic daily puzzle update

@@ -1,6 +1,6 @@
 import Cell from '../models/cellModel';
 
-export const latestPuzzleNumber = 381;
+export const latestPuzzleNumber = 382;
 export const numberOfTestPuzzles = 2;
 
 export const getPuzzleNumbers = () => {

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearBoard, setN } from '../state/slices/boardSlice';
 import { setStatus } from '../state/slices/timerSlice';
 import { useEffect, useState } from 'react';
+import { usePuzzleNumber } from '../hooks/usePuzzleNumber';
 import { useCheckBoard } from '../hooks/useCheckBoard';
 import { initPlaceholderPuzzle, initNewPuzzle } from '../utils/puzzleUtils';
 import PauseOverlay from './PauseOverlay';
@@ -13,15 +14,15 @@ import styles from '../styles/GameBoard.module.css';
 const GameBoard: React.FC = () => {
   const [puzzle, setPuzzle] = useState(initPlaceholderPuzzle(6));
   const { isWin } = useSelector((state: RootState) => state.board);
-  const { puzzleNumber } = useSelector((state: RootState) => state.gameSettings);
   const dispatch = useDispatch();
+  const { puzzleNumber } = usePuzzleNumber();
 
   useEffect(() => {
     const fetchData = async () => {
       setPuzzle(initPlaceholderPuzzle(6));
       dispatch(setStatus('loading'));
       try {
-        const puzzleUrl = `puzzles/queens${puzzleNumber}.json`;
+        const puzzleUrl = `../puzzles/queens${puzzleNumber}.json`;
         // const puzzleUrl = `../../test/data/puzzles/testPuzzle${puzzleNumber}.json`; // testPuzzles for easier debug
         const response = await fetch(puzzleUrl);
         if (!response.ok) {

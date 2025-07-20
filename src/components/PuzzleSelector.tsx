@@ -1,17 +1,16 @@
-import type { RootState } from '../state/store';
-import { useDispatch, useSelector } from 'react-redux';
-import { setPuzzleNumber } from '../state/slices/gameSettingsSlice';
-import { getPuzzleNumbers } from '../utils/puzzleUtils';
+import { useNavigate } from 'react-router';
+import { usePuzzleNumber } from '../hooks/usePuzzleNumber';
+import { puzzleNumbers } from '../utils/puzzleUtils';
 
 import styles from '../styles/PuzzleSelector.module.css';
 
 const PuzzleSelector: React.FC = () => {
-  const puzzleNumbers = getPuzzleNumbers();
-  const { puzzleNumber } = useSelector((state: RootState) => state.gameSettings);
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { puzzleNumber } = usePuzzleNumber();
 
   const handleSelectPuzzle = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(setPuzzleNumber(+event.target.value));
+    const newPuzzleNumber = event.target.value;
+    navigate(newPuzzleNumber);
   };
 
   return (

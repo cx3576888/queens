@@ -2,14 +2,37 @@ import Cell from '../models/cellModel';
 
 export const latestPuzzleNumber = 396;
 export const numberOfTestPuzzles = 2;
+export const puzzleNumbers = getPuzzleNumbers();
+const firstElement = puzzleNumbers[0]!;
+const lastElement = puzzleNumbers[puzzleNumbers.length - 1]!;
 
-export const getPuzzleNumbers = () => {
+function getPuzzleNumbers() {
   const puzzleNumbers = [];
   for (let i = latestPuzzleNumber; i >= 68; i--) {
     puzzleNumbers.push(i);
   }
   puzzleNumbers.push(66, 53);
   return puzzleNumbers;
+};
+
+export const getNewPuzzleNumber = (puzzleNumber: number, older: boolean) => {
+  let newPuzzleNumber = puzzleNumber;
+  let found = false;
+  while (!found) {
+    if (older) {
+      newPuzzleNumber -= 1;
+      if (newPuzzleNumber < lastElement) {
+        newPuzzleNumber = firstElement;
+      }
+    } else {
+      newPuzzleNumber += 1;
+      if (newPuzzleNumber > firstElement) {
+        newPuzzleNumber = lastElement;
+      }
+    }
+    found = puzzleNumbers.includes(newPuzzleNumber);
+  }
+  return newPuzzleNumber + "";
 };
 
 export const getTestPuzzleNumbers = () => {

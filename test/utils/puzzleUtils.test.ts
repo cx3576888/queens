@@ -1,8 +1,29 @@
-import { latestPuzzleNumber, numberOfTestPuzzles, getPuzzleNumbers, getTestPuzzleNumbers, getGrayPuzzleJson } from '../../src/utils/puzzleUtils';
+import { getGrayPuzzleJson, getNewPuzzleNumber, getTestPuzzleNumbers, latestPuzzleNumber, numberOfTestPuzzles, puzzleNumbers } from '../../src/utils/puzzleUtils';
 
 describe('puzzleUtils', () => {
   test('getPuzzleNumbers', () => {
-    expect(getPuzzleNumbers()[0]).toBe(latestPuzzleNumber);
+    expect(puzzleNumbers[0]).toBe(latestPuzzleNumber);
+  });
+
+  describe('getNewPuzzleNumber', () => {
+    test('older of 100', () => {
+      expect(getNewPuzzleNumber(100, true)).toBe(99);
+    });
+    test('newer of 100', () => {
+      expect(getNewPuzzleNumber(100, false)).toBe(101);
+    });
+    test('older of 66', () => {
+      expect(getNewPuzzleNumber(66, true)).toBe(53);
+    });
+    test('newer of 66', () => {
+      expect(getNewPuzzleNumber(66, false)).toBe(68);
+    });
+    test('older of last element', () => {
+      expect(getNewPuzzleNumber(53, true)).toBe(latestPuzzleNumber);
+    });
+    test('newer of first element', () => {
+      expect(getNewPuzzleNumber(latestPuzzleNumber, false)).toBe(53);
+    });
   });
 
   test('getTestPuzzleNumbers', () => {

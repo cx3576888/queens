@@ -1,0 +1,10 @@
+.puzzleSelector {
+  width: 100%;
+  text-align: center;
+}
+
+.dropdown {
+  width: calc(100% - 100px);
+  height: 26px;
+  padding-left: 8px;
+}

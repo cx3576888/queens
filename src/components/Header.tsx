@@ -1,10 +1,9 @@
-import type { RootState } from '../state/store';
-import { useSelector } from 'react-redux';
+import { usePuzzleNumber } from '../hooks/usePuzzleNumber';
 
 import styles from '../styles/Header.module.css';
 
 const Header: React.FC = () => {
-  const { puzzleNumber } = useSelector((state: RootState) => state.gameSettings);
+  const { puzzleNumber } = usePuzzleNumber();
 
   return (
     <header className={styles.header}>

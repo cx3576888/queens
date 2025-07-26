@@ -11,11 +11,6 @@ const Header: React.FC = () => {
       <nav>
         <ul className={styles.navMenu}>
           <li>
-            <a href="https://www.linkedin.com/in/chun-yen-liu-61851728b" target="_blank">
-              <img className={styles.navIcon} src="/LI-In-Bug.png" alt="LinkedIn logo" title="Contact me" />
-            </a>
-          </li>
-          <li>
             <a href="https://github.com/cx3576888/queens" target="_blank">
               <img className={styles.navIcon} src="/github-mark-white.svg" alt="GitHub logo" title="Leave a star if you're having fun!" />
             </a>

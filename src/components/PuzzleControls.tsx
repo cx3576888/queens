@@ -12,6 +12,10 @@ const PuzzleControls: React.FC = () => {
   const { puzzleNumber } = usePuzzleNumber();
   const { status } = useSelector((state: RootState) => state.timer);
 
+  const handleClickToday = () => {
+    navigate("today");
+  };
+
   const handleChangePuzzle = (older: boolean) => {
     const newPuzzleNumber = getNewPuzzleNumber(puzzleNumber, older);
     navigate(newPuzzleNumber);
@@ -19,6 +23,7 @@ const PuzzleControls: React.FC = () => {
 
   return (
     <div className={styles.puzzleControls}>
+      <button disabled={status === 'loading'} onClick={handleClickToday}>Today</button>
       <button disabled={status === 'loading'} onClick={() => handleChangePuzzle(false)}>◀</button>
       <PuzzleSelector />
       <button disabled={status === 'loading'} onClick={() => handleChangePuzzle(true)}>▶</button>

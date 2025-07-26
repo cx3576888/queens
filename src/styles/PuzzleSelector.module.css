@@ -1,10 +1,12 @@
 .puzzleSelector {
+  display: flex;
   width: 100%;
-  text-align: center;
 }
 
 .dropdown {
-  width: calc(100% - 100px);
+  width: 100%;
   height: 26px;
-  padding-left: 8px;
+  padding-left: 6px;
+  margin-left: 6px;
+  margin-right: 2px;
 }

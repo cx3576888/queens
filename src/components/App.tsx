@@ -7,6 +7,7 @@ import TopBar from './TopBar';
 import GameBoard from './GameBoard';
 import PuzzleControls from './PuzzleControls';
 import GameRule from './GameRule';
+import { initLocalStorage } from '../utils/reportUtils';
 
 const App: React.FC = () => {
   const { puzzleNumber, needRedirect } = usePuzzleNumber();
@@ -17,6 +18,7 @@ const App: React.FC = () => {
     // no this puzzle
     return <RedirectToHome />;
   }
+  initLocalStorage();
   return (
     <>
       <Header />

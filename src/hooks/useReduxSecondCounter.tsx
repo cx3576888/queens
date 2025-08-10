@@ -2,7 +2,7 @@ import type { RootState } from '../state/store';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { roundNumber } from '../utils/timeUtils';
-import { reportResult } from '../utils/reportUtils';
+import { reportResult, saveToLocalStorage } from '../utils/reportUtils';
 import { usePuzzleNumber } from './usePuzzleNumber';
 
 export const useReduxSecondCounter = () => {
@@ -17,7 +17,9 @@ export const useReduxSecondCounter = () => {
       case "paused":
         return;
       case "win":
-        reportResult({ puzzleNumber, win: true, time: second, timeStamp: Date.now() })
+        const data = { puzzleNumber, win: true, time: second, timeStamp: Date.now() };
+        saveToLocalStorage(data);
+        reportResult(data);
         return;
       case "loading":
         setSecond(0);

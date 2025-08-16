@@ -29,12 +29,12 @@ jobs:
 
       - name: Run puppeteer script
         id: auto-download-puzzle
-        run: node scripts/github/auto-download-puzzle.js
+        run: node scripts/github/auto-download-puzzle.mjs
         env:
           GITHUB_ACTIONS: true
 
       - name: Edit puzzleUtils.ts
-        run: node scripts/github/edit-puzzle-number.js
+        run: node scripts/github/edit-puzzle-number.mjs
         env:
           PUZZLE_ID: ${{ steps.auto-download-puzzle.outputs.PUZZLE_ID }}
 

@@ -12,7 +12,7 @@ export const useReduxSecondCounter = () => {
 
   useEffect(() => {
     switch (status) {
-      case "loadSuccess":
+      case "loading":
       case "loadError":
       case "paused":
         return;
@@ -21,9 +21,9 @@ export const useReduxSecondCounter = () => {
         saveToLocalStorage(data);
         reportResult(data);
         return;
-      case "loading":
+      case "loadSuccess":
         setSecond(0);
-        break;
+        return;
     }
     const interval = setInterval(() => {
       setSecond(second => roundNumber(second + 0.1));
